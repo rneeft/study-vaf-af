@@ -2,7 +2,7 @@
 
 ```JSON
 @phdthesis{1,
-  author  = "Smulders, Ad",
+  author  = "Mulders, Ad",
   title   = "Inferring state models in TESTAR",
   school  = "The Open University of The Netherlands",
   year    = "2020"
@@ -51,4 +51,36 @@ reference of conformance testing.
 
 ## Part II State models
 
-## 14.4 Future work
+state modelling -> Finite State Machine [10]. 
+
+TESTAR terminology: vertces x1,x2 and x3 are called states while the transitions can be called action.
+while testar executes, model is build dynamically. meaning that has to be able to correcly identifing the current state of the GUI and the actions it can execute. 
+
+## 4.2 model implementation - a literature study
+
+two caps: first paradigm: models are state based. state is the application at rest .transitions between states indentified as actions. **TESTAR** 
+
+Second paradigm. 
+
+Guitar [47]
+
+state explosion is the main disadvantage in the state based paradigm. 
+
+lack of context is biggest disadvantage in the event based paradigm. main reason is to prevent state explosion. 
+
+
+## Chapter 5 Providing TESTAR with state modelling capabilities
+
+**Global requirement**
+*The model should allow for comparisons between multiple models of different versions of the same software application. This comparison should be possible both realtime/runtime as a test sequence is being executed and offline between two models as a whole.*
+
+
+**The model should allow for the identification of unique states at a sufficient abstraction level. This means that the state space explosion is avoided, while simultaneously not too much of the traceability and truthfulness of the model [64] is lost.*
+
+**=-> is it possible to improve this by adding hooks into the SUT??**
+
+## Chapter 6 - Model quality and usefulness
+
+Figure 6.1 gives a GREAT exmple of the non-deterministic state. Installing an application and clicking Cancel returns to the previous screen, since is different for each parent screen.
+
+## chapter 7
