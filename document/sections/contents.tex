@@ -1,0 +1,102 @@
+\section{Introduction}
+In the handleiding VAF/AF you can find the parts that need to be addressed in your final thesis. Read that before you start.
+
+This current document is a \LaTeX{} template to get you started.
+
+
+\section{First Level Headings}
+
+Made with {\tt $\backslash$section}.
+
+\subsection{Second Level Headings}
+
+Made with {\tt $\backslash$subsection}.
+
+\subsubsection{Third and Further Level Headings}
+
+Made with {\tt $\backslash$subsubsection}.
+
+
+Using more than three levels of headings is highly discouraged.
+
+
+\section{Latex lists}
+
+You can make lists with automatic numbering using the {\tt enumerate} environment:
+
+\begin{enumerate} 
+\item Like this,
+\item and like this.
+\end{enumerate}
+
+or with bullet points using the {\tt itemize} environment
+
+\begin{itemize} 
+\item Like this,
+\item and like this.
+\end{itemize}
+
+or with words and descriptions 
+using the {\tt description} environment
+
+\begin{description}
+\item[Word] Definition
+\item[Concept] Explanation
+\item[Idea] Text
+\end{description}
+
+\subsection{Research questions}
+
+Research questions could fit nicely in the \LaTeX{} {\tt description} environment.
+
+\begin{description}
+	\item [RQ1] How can we \dots
+	\item [RQ2] What is the \dots
+	\item [RQ3] What are the consequences of \dots
+\end{description}
+
+\section{Acronyms}
+You should list all the acronyms you use in the thesis in acronyms.tex and use them as follows:
+
+\begin{enumerate}
+\item Use the full definition on the first occurrence, for example \acrfull{gui}
+\item Use the short one for all the following occurrences, like \acrshort{gui}.
+\end{enumerate}
+
+
+\section{Footnotes}
+
+Indicate footnotes with a number in the text.\footnote{This is a footnote.}
+Footnotes are placed at the bottom of the page on which they appear. 
+
+
+\section{Figures, Tables and Captions}
+
+\begin{table}[h!tbp]
+\begin{tabular}{l | r | r| c}
+kolom 1 & kolom 2 & kolom 3 & kolom 4 \\
+\hline
+zon & maan & ster & meteoor\\
+gras & graan & groen & grauw\\
+\end{tabular}
+\caption{Example table}
+\label{table-example}
+\end{table}
+
+Table~\ref{table-example} shows how to include a table. Note that the first column is left-justified, the right column is centered, and the other two columns are right-justified (because of the \texttt{\{l | r | r | c\}}). More information: \url{https://en.wikibooks.org/wiki/LaTeX/Tables}. 
+
+\texttt{[h!tb]} means: preferably place the table \emph{h}ere, and if that is not possible, at the \emph{t}op of the page, at the \emph{b}ottom, or on a separate \emph{page}. The same positioning advice can be used in figures. Figure~\ref{fig-example} is an example.
+
+\begin{figure}[h!tbp]
+\includegraphics[scale=0.5]{pics/LaTeX.png}
+\caption{LaTeX}
+\label{fig-example}
+\end{figure}
+
+
+
+\section{Bibliographic references}
+
+
+
+
