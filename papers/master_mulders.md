@@ -1,7 +1,7 @@
 # Inferring state models in TESTAR
 
 ```JSON
-@phdthesis{1,
+@mastersthesis{4,
   author  = "Mulders, Ad",
   title   = "Inferring state models in TESTAR",
   school  = "The Open University of The Netherlands",
