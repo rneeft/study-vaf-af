@@ -8,7 +8,7 @@ This git repository contains all the files corresponding to the Graduation Assig
 The topic of my project will [TESTAR](https://testar.org/). TESTAR (Or TEST*) enabled you to test your software's Graphical User Interface automatically. It will discover the GUI and executes test cases. 
 
 ## Structure of the repository
-- The **papers** folder contains the notes for the articles I read. Please read the [README](/papers/readme.md) before reading the notes.
+- The **papers** folder contains the notes for the articles I read. Please read the [README](papers/README.md) before reading the notes.
 - The **document** folder contains the files for my research proposal. The document will be written in LaTeX. [Overleaf](https://www.overleaf.com) is used for writing the document.
 - The **.github/workflows** folder contains files for automating the document creation. Every week a release will be created with the current state of the research proposal.  
 
