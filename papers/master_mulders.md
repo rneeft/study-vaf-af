@@ -83,4 +83,47 @@ lack of context is biggest disadvantage in the event based paradigm. main reason
 
 Figure 6.1 gives a GREAT exmple of the non-deterministic state. Installing an application and clicking Cancel returns to the previous screen, since is different for each parent screen.
 
-## chapter 7
+## chapter 8
+OrientDB is used to store the data in graph mode.
+
+OrientDB used Vertex and Edge classes. A Vertex is an enity that represents a node in the graph
+Edge represents an entity connects vertices to each other. 
+
+**Abstract layer**
+AbstractStateModel
+AbstractState
+AbstractAction
+UnvisitedAbstractAction
+BlackHole
+
+**Concrete layer**
+Widget
+ConcreteState
+ConcreteAction
+
+**Management layer**
+TestSequence
+SequenceNode
+SequenceStep
+
+abstract layer is leading -> drive the execution. 
+
+## Chapter 9
+*How is the software architecture of TESTAR composed?*
+
+*How does Windows Automation API work*
+
+## Chapter 10
+
+
+## Chapter 11 Visualization
+no out-of-the-box products were suffice. 
+Jetty server and Cytoscape.js is used for servering graph. 
+
+*How can difference in the state model become visible inside build-in state model visualisation*
+
+## Part IV
+
+## future work
+Research into the comparison of state models of different versions of the
+same application is now possible.
