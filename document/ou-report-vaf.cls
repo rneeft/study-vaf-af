@@ -1,7 +1,7 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{ou-report-vaf}[2014/04/02 v0.1 Open Universiteit report class]
 
-\RequirePackage[dutch,english]{babel}
+\RequirePackage[english]{babel}
 
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 \ExecuteOptions{english}
