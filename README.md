@@ -1,6 +1,7 @@
 # Graduation Assignment Preparation
 [![CI](https://github.com/rneeft/study-vaf-af/actions/workflows/main.yml/badge.svg)](https://github.com/rneeft/study-vaf-af/actions/workflows/main.yml)
 [![University](https://img.shields.io/static/v1?label=University&message=Open%20Universiteit&color=E4010B)](https://www.ou.nl)
+[![License: CC0-1.0](https://img.shields.io/badge/License-CC0%201.0-lightgrey.svg)](http://creativecommons.org/publicdomain/zero/1.0/)
 
 This git repository contains all the files corresponding to the Graduation Assignment Preparation.
 

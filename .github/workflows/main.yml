@@ -35,7 +35,7 @@ jobs:
           # LaTeX engine to be used
           # compiler: # optional, default is latexmk
           # Extra arguments to be passed to the latex compiler
-          args: -job-name=Neeft_VAF_AF
+          # args: -job-name=Neeft_VAF_AF
           # Install extra packages by apt-get
           # extra_system_packages: # optional
       
