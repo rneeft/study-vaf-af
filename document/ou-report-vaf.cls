@@ -62,9 +62,11 @@
 \definecolor{ou-fuchsia}{cmyk}{0.19,1,0,0.19}
 \definecolor{ou-bright-green}{cmyk}{0.36,0,1,0}
 \definecolor{ou-yellow}{cmyk}{0.02,0,0.54,0}
+\definecolor{ou-red}{cmyk}{0,1,0.88,0.11}
+
 
 %% Use OU red as the color for titles
-\colorlet{title}{red}
+\colorlet{title}{ou-red}
 
 %% The affiliation is shown in the blue box on the front cover.
 \newcommand*\affiliation[1]{\def\@affiliation{#1}}
@@ -194,7 +196,7 @@
 %% in the title color.
 \titleformat{\section}
     {\Large\headerstyle}
-    {\bfseries\thesection.\ }
+    {\bfseries\color{title}\thesection.\ }
     {0pt}
     {\color{title}}
 %% Sections are preceded by an empty line.
@@ -207,7 +209,7 @@
 %% font.
 \titleformat{\subsection}
     {\large\headerstyle}
-    {\bfseries\thesubsection.\ }
+    {\bfseries\color{title}\thesubsection.\ }
     {0pt}
     {\color{title}}
 \titlespacing{\subsection}{0pt}{\baselineskip}{0pt}
@@ -217,7 +219,7 @@
 %% are not preceded by a number.
 \titleformat{\subsubsection}
     {\headerstyle}
-    {\bfseries\thesubsubsection.\ }
+    {\bfseries\color{title}\thesubsubsection.\ }
     {0pt}
     {\color{title}}
 %% Subsubsections are preceded by an empty line and do not appear in the table
