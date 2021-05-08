@@ -1,7 +1,7 @@
 # testar – scriptless testing through graphical user interface
 
 ```JSON
-@article{4,
+@article{VosAho2021,
 author = {Vos, Tanja E. J. and Aho, Pekka and Pastor Ricos, Fernando and Rodriguez-Valdes, Olivia and Mulders, Ad},
 title = {testar – scriptless testing through graphical user interface},
 journal = {Software Testing, Verification and Reliability},

@@ -6,8 +6,9 @@
 % Het template is versimpeld door Sylvia Stuurman, 2019.
 % Het template is aangepast voor de ba informatica door Harrie Passier, Tanja Vos en Pekka Aho 2020 
 
-\usepackage[acronym]{glossaries}
-\makeglossaries
+\usepackage[acronym, toc]{glossaries}
+\makenoidxglossaries
+
 \include{acronyms}
 
 \begin{document}
@@ -68,7 +69,7 @@ by
 \newpage
 
 % Acronyms
-\printglossary[type=\acronymtype]
+\printnoidxglossary[type=\acronymtype]
 \newpage
 
 %%%% CONTENTS %%%%%%%
