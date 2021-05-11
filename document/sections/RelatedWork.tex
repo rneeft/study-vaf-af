@@ -1,3 +1,24 @@
-\section{Related work}
+\section{Related work} \label{releatedWork}
 
-Not filled yet but notes can be found in the 'papers' folder.
+This section contains an overview of the material that can be seen as a direct foundation for this proposal.
+
+\subsection{Inferring state models in TESTAR}
+
+In a recent student master graduation project, Inferring state mdoels in TESTAR, \cite{thesisMulders}  the foundation is created to build state models with TESTAR. The result can be found inside the StateModel package \footnote{\url{https://github.com/TESTARtool/TESTAR_dev/tree/master/testar/src/nl/ou/testar/StateModel}}
+-> is saved in an OrientDB database - > which gives good query options -> viewer is build to see the model. 
+\subsubsection{OrientDB database}
+
+OrientDB is \textit{"the first Multi-Model Open Source NoSQL DBMS that brings together the power of graphs and the flexibility of documents into one scalable high-performance operational database."} \cite{orientdb1} 
+OrientDB used Vertex and Edge classes. A Vertex is an entity that represents a node in the graph. Edge represents an entity that connects vertices. 
+
+% add illustration about this graph.
+
+\subsection{State model difference}
+Ricós started with a proof of concept for state model difference \footnote{\url{https://github.com/TESTARtool/TESTAR\_dev/tree/state_model_difference}}
+give two sut version -> calculates difference in added and removed states.
+
+Let $A$ be a set of states of version 1 of the SUT, let $B$ be a set of states of version 2 of the SUT. The removed states can be written as
+\[A-B = \lbrace x | x \in A \wedge x \notin B \rbrace\]
+the states that are added can be written as
+\[B-A = \lbrace x | x \in B \wedge x \notin A \rbrace\]
+
