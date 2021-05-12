@@ -64,7 +64,6 @@
 \definecolor{ou-yellow}{cmyk}{0.02,0,0.54,0}
 \definecolor{ou-red}{cmyk}{0,1,0.88,0.11}
 
-
 %% Use OU red as the color for titles
 \colorlet{title}{ou-red}
 
@@ -244,3 +243,24 @@
 }
 
 \RequirePackage{csquotes}
+
+%% adding a style for code
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{ou-white},   
+    commentstyle=\color{ou-green},
+    keywordstyle=\color{ou-red},
+    numberstyle=\tiny\color{ou-red},
+    stringstyle=\color{ou-purple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+\lstset{style=mystyle}

@@ -6,6 +6,9 @@ This section contains an overview of the material that can be seen as a direct f
 
 In a recent student master graduation project, Inferring state mdoels in TESTAR, \cite{thesisMulders}  the foundation is created to build state models with TESTAR. The result can be found inside the StateModel package \footnote{\url{https://github.com/TESTARtool/TESTAR_dev/tree/master/testar/src/nl/ou/testar/StateModel}}
 -> is saved in an OrientDB database - > which gives good query options -> viewer is build to see the model. 
+
+Future work might be adding unit test on the part that will be touched since no code coverage has been found for the package.
+
 \subsubsection{OrientDB database}
 
 OrientDB is \textit{"the first Multi-Model Open Source NoSQL DBMS that brings together the power of graphs and the flexibility of documents into one scalable high-performance operational database."} \cite{orientdb1} 
@@ -22,3 +25,6 @@ Let $A$ be a set of states of version 1 of the SUT, let $B$ be a set of states o
 the states that are added can be written as
 \[B-A = \lbrace x | x \in B \wedge x \notin A \rbrace\]
 
+Future work can be viewing the SUT en all version as a universe of states to see which states are removed and added, maybe moved (if location is not part of the state)
+
+Future work -> adding unit tests since those are not present -> refactoring of the code since some file do not have a clear Separation of concern.
