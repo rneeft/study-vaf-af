@@ -4,11 +4,10 @@ This section describes the background of this proposal and contains information 
 What role place GUI testing in the testing spectrum? (compared with unit / integration testing)
 
 \subsection{What is TESTAR?}
--> tool to (smart) monkey test GU -> works without scripts. -> no maintance costs -> 4 modes (spy,generate,record, replay, view)
+-> tool to (smart) monkey test GU -> works without scripts. -> no maintenance costs -> 4 modes (spy,generate,record, replay, view)
 What is a widget -> obtaining state with widgets -> generate action set -> selection action.
 % maybe copy figure 1 in here as a reference. 
 The state is being checked with a test oracle (next section). TESTAR has some built-in oracles. but can also be created.
-
 
 \subsection{History of GUI testing}
 First we had manually testing as old as the start of development -> Capture and Replay CR -> CR becomes automated -> scripted (monkey testing).
@@ -35,6 +34,12 @@ for automated gui tests, the properties from widgets can be used to create test 
 When having other tests, like specification tests that are testing the SUT on a different level, one could argue how granular the GUI test oracle must be. For example, let's have a look at an example test oracle for a calculator. An unit or specification test can check the SUT for calculating 1+1=2. The Test oracle for the GUI can only check whether an calculation result is shown.  
 
 TESTAR has build-in test oracle (crash, not responding, regular expressions).  
+
+Test oracles two types -> online which checks behavior during test execution -> offline which runs when test execution has been completed -> checks for example logs or database information.
+
+checking state changes can be seen as offline oracle. 
+ 
+ 
 
 \subsection{How is data retrieved from the GUI}
 %% give a generic introduction about the retrieval process of the GUI

@@ -11,6 +11,11 @@
 
 \include{acronyms}
 
+\usepackage{enumitem}
+\newlist{questions}{enumerate}{2}
+\setlist[questions,1]{label=\textbf{RQ\arabic*}    ,ref=RQ\arabic*}
+\setlist[questions,2]{label*=.\textbf{\arabic*}    ,ref=\thequestionsi.\arabic*}
+
 \begin{document}
 
 %%%% TITLE PAGE %%%%%%%
@@ -90,6 +95,12 @@ by
 \input{sections/Planning}
 \newpage
 
+\appendix
+\chapter{Appendixes}
+\input{appendixes/StateModelDiff}
+
+
+\newpage
 %%%% BIBLIOGRAPHY %%%%%%%
 % possible styles: apacite, abbrv, acm, alpha, apalike, ieeetr, plain, siam and unsrt.
 % alpha and abbrv are most used in computer science
