@@ -1,0 +1,33 @@
+\section{Related work} \label{releatedWork}
+    
+    This section covers an overview of the material that can be seen as the direct foundation for this proposal.
+    
+    \subsection{Inferring state models in TESTAR}
+    
+        In a recent student master graduation project, Inferring state models in TESTAR, \cite{thesisMulders}  the foundation is created to build state models with TESTAR. The result can be found inside the \verb|StateModel| package\footnote{\url{https://github.com/TESTARtool/TESTAR_dev/tree/master/testar/src/nl/ou/testar/StateModel}}
+        -> is saved in an OrientDB database - > which gives good query options -> viewer is build to see the model. 
+        
+        Future work might be adding unit test on the part that will be touched since no code coverage has been found for the package.
+
+        %What is a state 3.3
+        
+        %\subsubsection{State of the source code}
+        
+        %Mulders concluded in his thesis \cite{thesisMulders} that 
+        
+
+
+    \subsection{State model difference}
+        The \verb|StateModel.Difference| package was added by Ricós\cite{stateDiff} and offers a proof of concept for calculating differences between the state models of two versions. 
+        
+        Ricós started with a proof of concept for state model difference \footnote{\url{https://github.com/TESTARtool/TESTAR_dev/tree/state_model_difference}}
+        give two sut version -> calculates difference in added and removed states.
+        
+        Let $A$ be a set of states of version 1 of the SUT, let $B$ be a set of states of version 2 of the SUT. The removed states can be written as
+        \[A-B = \lbrace x | x \in A \wedge x \notin B \rbrace\]
+        the states that are added can be written as
+        \[B-A = \lbrace x | x \in B \wedge x \notin A \rbrace\]
+        
+        Future work can be viewing the SUT en all version as a universe of states to see which states are removed and added, maybe moved (if location is not part of the state)
+        
+        Future work -> adding unit tests since those are not present -> refactoring of the code since some file do not have a clear Separation of concern. -> one can observation the return and input values are form of \verb|string| (e.g. \verb|string| \verb|Set<String>| etc) -> can lead to primitive obsession -> investigation is needed to solve this. 

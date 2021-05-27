@@ -8,6 +8,7 @@
 \ProcessOptions\relax
 \LoadClass[12pt]{article}
 
+\usepackage{titling}
 \RequirePackage{amsmath}
 \RequirePackage{amssymb}
 \RequirePackage[nooneline,footnotesize]{caption}
@@ -22,7 +23,6 @@
 \RequirePackage{xkeyval}
 \RequirePackage{listings}
 \RequirePackage[titletoc]{appendix}
-\RequirePackage[T1]{fontenc}    
 \RequirePackage{subfigure}
 \RequirePackage{graphics}
 \RequirePackage{geometry}
@@ -30,6 +30,7 @@
 \RequirePackage[pagebackref=true,plainpages=false]{hyperref}
 \newcommand*\ourmfamily{\rmfamily}
 \newcommand*\ousffamily{\sffamily}
+\usepackage{enumitem}
 
 %% The native font is Utopia Regular with Fourier math. We use Latin Modern
 %% as a fallback, since Utopia lacks support for sans-serif and monospace.
@@ -37,6 +38,7 @@
 \RequirePackage[utf8]{inputenc}
 \RequirePackage{lmodern}
 \RequirePackage{fourier}
+
 %% The style for titles is small caps.
 \def\titlefont{\rmfamily}
 \def\titleshape{\scshape}
@@ -226,7 +228,6 @@
 \titlespacing{\subsubsection}{0pt}{\bigskipamount}{0pt}
 \dottedcontents{subsubsection}[9em]{\titlefont}{3.2em}{8pt}
 
-
 %% Color the bullets of the itemize environment and make the symbol of the third
 %% level a diamond instead of an asterisk.
 \renewcommand*\labelitemi{\color{title}\textbullet}
@@ -252,15 +253,27 @@
     numberstyle=\tiny\color{ou-red},
     stringstyle=\color{ou-purple},
     basicstyle=\ttfamily\footnotesize,
-    breakatwhitespace=false,         
-    breaklines=true,                 
-    captionpos=b,                    
-    keepspaces=true,                 
-    numbers=left,                    
-    numbersep=5pt,                  
-    showspaces=false,                
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
     showstringspaces=false,
-    showtabs=false,                  
+    showtabs=false,          
     tabsize=2
 }
 \lstset{style=mystyle}
+
+
+%% create style for research question list
+\newlist{questions}{enumerate}{2}
+\setlist[questions,1]{label=\textbf{RQ\arabic*},ref=RQ\arabic*}
+\setlist[questions,2]{label*=.\textbf{\arabic*},ref=\thequestionsi.\arabic*,leftmargin=9pt}
+
+%% including acronyms
+\usepackage[acronym, toc]{glossaries}
+\makenoidxglossaries
+
+\include{acronyms}
