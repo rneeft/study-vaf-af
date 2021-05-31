@@ -16,33 +16,40 @@
 
 
 
-\subsection{What is a test oracle?}
-    How can we know whether the SUT working as specified? A method of checking the behavior of the SUT is formally known as a \textit{test oracle} \cite{testOracles}. An example of a GUI test oracle could be that the SUT does not crash. The \textit{Assert} displayed in listing \ref{code:assert} is an example of a test oracle used by developers.
+\subsection{How is the data tested}
+    When software is tested, a method is needed to check the correct behaviour of the SUT. The method of checking is formally known as a \emph{test oracle} \cite{testOracles}.An example of a test oracle widely used by developers is the code \emph{assertions}, which is a Boolean assertion. Developers can create assertions in software to check its behaviour during runtime \cite{barr2014oracle}. Assertions can also be used in unit tests as displayed by listing \ref{code:assert}. 
 
-    \begin{lstlisting}[language=Java, caption=Assertion, label=code:assert]
-        @Test
-        public void testAdd(){
-            Calculator sut = new Calculator();
-        
-            int expected = 3;
-            int actual = sut.Add(1,2);
-        
-            Assert.assertEquals(expected, actual);
-        }
-    \end{lstlisting}
+%% do not indent code since it indents its extra in the LaTeX output
+\begin{lstlisting}[language=Java, caption=Assertion, label=code:assert]
+@Test
+public void testAdd(){
+    Calculator sut = new Calculator();
+
+    int expected = 3;
+    int actual = sut.Add(1,2);
+
+    Assert.assertEquals(expected, actual);
+}
+\end{lstlisting}
+
+    \subsubsection{Online and Offline test oracles}
+    Test oracle comes in two variants, \emph{online} or \emph{on-the-fly} test oracle and \emph{offline} test oracles \cite{VosAho2021}. With online test oracles, the state under test is being asserted for any anomalies during test execution. For example, looking at the URL to check for any information being exposed in the query string. Offline test oracles will look into stored data - like logs - to find anomalies after test execution. To extend the previous example, offline test oracles can look at all the visited URL's to check for any exposed information in the query strings. 
+
+    Both variants become with their own pro and cons. With every state being visited the online test oracle takes up time during test execution. This slows down test execution and can become an issue with time-critical SUT's. On the other hand, some issues - like the SUT become unresponsive - can only be checked during test execution. 
+
+    With offline test oracles, recorded data is being validated. The becomes helpful with large data sets. Data can be validated in parallel which can speed up validation. Test oracles can be updated to find new issues without executing a new test run. 
+
+    Besides the online and offline test oracle variants, test oracles can also be places under four categories. Section \ref{to:four-cat} classifies those four categories.
+
+    \subsubsection{Four categories} \label{to:four-cat}
     
-    oracle are checking whether the behaviour of a SUT is correct or not\cite{testOracles}. during CR method test oracle can be checking whether the same output is generated for another test run. 
-    
-    for automated gui tests, the properties from widgets can be used to create test oracles. 
-    
-    When having other tests, like specification tests that are testing the SUT on a different level, one could argue how granular the GUI test oracle must be. For example, let's have a look at an example test oracle for a calculator. An unit or specification test can check the SUT for calculating 1+1=2. The Test oracle for the GUI can only check whether an calculation result is shown.  
-    
-    TESTAR has build-in test oracle (crash, not responding, regular expressions).  
-    
-    Test oracles two types -> online which checks behavior during test execution -> offline which runs when test execution has been completed -> checks for example logs or database information.
-    
-    checking state changes can be seen as offline oracle. 
-     
+    Barr et al. conducted a survey and classified test oracles into four categories \cite{barr2014oracle}:
+    \begin{enumerate}
+        \item Derived test oracles
+        \item Specified test oracles
+        \item Implicit test oracles
+        \item No test oracle or the Human oracle
+    \end{enumerate}
  
 
 \subsection{How is data retrieved}
