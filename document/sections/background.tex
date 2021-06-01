@@ -5,7 +5,6 @@
 
 \subsection{History of GUI testing}
 
-
     First we had manually testing as old as the start of development -> Capture and Replay CR -> CR becomes automated -> scripted (monkey testing).
 
 \subsection{What is TESTAR?}
@@ -32,24 +31,14 @@ public void testAdd(){
 }
 \end{lstlisting}
 
-    \subsubsection{Online and Offline test oracles}
-    Test oracle comes in two variants, \emph{online} or \emph{on-the-fly} test oracle and \emph{offline} test oracles \cite{VosAho2021}. With online test oracles, the state under test is being asserted for any anomalies during test execution. For example, looking at the URL to check for any information being exposed in the query string. Offline test oracles will look into stored data - like logs - to find anomalies after test execution. To extend the previous example, offline test oracles can look at all the visited URL's to check for any exposed information in the query strings. 
+\subsubsection{Online and Offline test oracles}
+    Test oracle comes in two variants, \emph{online} or \emph{on-the-fly} test oracle and \emph{offline} test oracles \cite{VosAho2021}. With online test oracles, the state under test is being asserted for any anomalies during test execution. For example,  an online test oracle inspects the URL to check for any information being exposed in the query string. Offline test oracles will look into stored data - like logs - to find anomalies after test execution. For example, offline test oracles can inspect all the visited URL's to check for any exposed information in the query strings. 
 
-    Both variants become with their own pro and cons. With every state being visited the online test oracle takes up time during test execution. This slows down test execution and can become an issue with time-critical SUT's. On the other hand, some issues - like the SUT become unresponsive - can only be checked during test execution. 
+    Each variant come with their strengths and weaknesses. The online test oracle takes up compute time because it inspects the state during test execution. This inspecting of state slows down the test execution and may become an issue with time-critical SUT's. On the other hand, some issues - like the SUT become unresponsive - can only be checked during test execution. An offline test oracle is inspecting data that is gartered when test execution has finished. Especially with larger data sets, this can become helpful. Inspecting the data may run in parallel, which can speed up the test oracle. Additionally, when developers create new offline test oracles, they can inspect the recorded data instead of executing a new test run.
 
-    With offline test oracles, recorded data is being validated. The becomes helpful with large data sets. Data can be validated in parallel which can speed up validation. Test oracles can be updated to find new issues without executing a new test run. 
-
-    Besides the online and offline test oracle variants, test oracles can also be places under four categories. Section \ref{to:four-cat} classifies those four categories.
+    Besides the online and offline test oracle variants, test oracles can also be places under four categories. Barr et al. conducted a survey and classify test oracles into four categories. In Section \ref{to:four-cat} the four categories are explained. 
 
     \subsubsection{Four categories} \label{to:four-cat}
-    
-    Barr et al. conducted a survey and classified test oracles into four categories \cite{barr2014oracle}:
-    \begin{enumerate}
-        \item Derived test oracles
-        \item Specified test oracles
-        \item Implicit test oracles
-        \item No test oracle or the Human oracle
-    \end{enumerate}
  
 
 \subsection{How is data retrieved}
@@ -67,9 +56,7 @@ public void testAdd(){
     
     %state is an application in state -> 
 
-    % I believe this sections belongs to the related work
-    %- What are state models in TESTAR?
-    %How are state models in TESTAR Now.
+
 
 \subsection{How is data persisted}
 
