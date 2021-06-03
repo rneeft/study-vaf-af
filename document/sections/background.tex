@@ -1,22 +1,43 @@
 \section{Background} \label{background}
-    This section describes the background of this proposal and contains information that is available but might not be known by students and readers. In
+    This section describes the background of this proposal and contains information that is available but might not be known by students and readers. 
     
-    What role place GUI testing in the testing spectrum? (compared with unit / integration testing)
 
 \subsection{History of GUI testing}
 
-    First we had manually testing as old as the start of development -> Capture and Replay CR -> CR becomes automated -> scripted (monkey testing).
+
+    % what is GUI testing?
+
+    % What role place GUI testing in the testing spectrum? (compared with unit / integration testing)
+
+
+    % First we had manually testing as old as the start of development -> Capture and Replay CR -> CR becomes automated -> scripted (monkey testing).
 
 \subsection{What is TESTAR?}
-    -> tool to (smart) monkey test GU -> works without scripts. -> no maintenance costs -> 4 modes (spy,generate,record, replay, view)
-    What is a widget -> obtaining state with widgets -> generate action set -> selection action.
+    TESTAR - or TEST* - is an automated software testing tool for the GUI level \cite{testar-about}. TESTAR started within the context of the \acrfull{fittest} project. TESTAR is open-source, the source code is published on GitHub \footnote{ \url{https://github.com/TESTARtool/TESTAR\_dev}}. A screenshot of the TESTAR tool is displayed in figure \ref{fig:testar}.
+    
+    \begin{figure}[h]
+        \includegraphics{pics/testar.png}
+        \caption{Screenshot of the testar tool}
+        \label{fig:testar}
+    \end{figure}
+    
+    TESTAR has several \emph{execution modes} in which it interacts with the SUT \cite{testar-manual}. From left to right, in figure \ref{fig:testar}, those are Spy, Generate, Record, Replay and View mode. 
+
+    The \emph{Spy} execution mode allows the user to inspect a SUT and see how TESTAR is interpreting the widgets on the screen. Figure \ref{fig:calc-spy} shows the Windows calculator in spy mode. Dots on the GUI indicates actions in which TESTAR can interact. Within TESTAR, it is possible to filter actions. TESTAR will then not execute these actions. The actions are given a silver dot. A list with properties about the widget is shown when hovering, as well as a unique identifier of the current \emph{state}, more information about the state and the unique identifier can be found at section \ref{gui-state}.
+
+    \begin{figure}[h]
+        \includegraphics{pics/calc-state.png}
+        \caption{Screenshot of Windows calculator with TESTAR's Spy mode enabled.}
+        \label{fig:calc-spy}
+    \end{figure}
+
+    % -> tool to (smart) monkey test GU -> works without scripts. -> no maintenance costs -> 4 modes (spy,generate,record, replay, view)
+    % What is a widget -> obtaining state with widgets -> generate action set -> selection action.
     % maybe copy figure 1 in here as a reference. 
-    The state is being checked with a test oracle (next section). TESTAR has some built-in oracles. but can also be created.
-
-
+    % The state is being checked with a test oracle (next section).
 
 \subsection{How is the SUT tested}
-    When software is tested, a method is needed to check the correct behaviour of the SUT. The method of checking is formally known as a \emph{test oracle} \cite{testOracles}.An example of a test oracle widely used by developers is the code \emph{assertions}, which is a Boolean assertion. Developers can create assertions in software to check its behaviour during runtime \cite{barr2014oracle}. Assertions can also be used in unit tests as displayed by listing \ref{code:assert}. 
+    When software is tested, a method is needed to check the correct behaviour of the SUT. The method of checking is formally known as a \emph{test oracle} \cite{testOracles}. An example of a test oracle widely used by developers is the code \emph{assertions}, which is a Boolean assertion. Developers can create assertions in software to check its behaviour during runtime \cite{barr2014oracle}. Assertions can also be used in unit tests as displayed by listing \ref{code:assert}. 
 
 %% do not indent code since it indents its extra in the LaTeX output
 \begin{lstlisting}[language=Java, caption=Assertion, label=code:assert]
@@ -34,12 +55,13 @@ public void testAdd(){
 \subsubsection{Online and Offline Test oracles}
     Test oracle comes in two variants, \emph{online} or \emph{on-the-fly} test oracle and \emph{offline} test oracles \cite{VosAho2021}. With online test oracles, the state under test is being asserted for any anomalies during test execution. For example,  an online test oracle inspects the URL to check for any information being exposed in the query string. Offline test oracles will look into stored data - like logs - to find anomalies after test execution. For example, offline test oracles can inspect all the visited URL's to check for any exposed information in the query strings. 
 
-    Each variant come with their strengths and weaknesses. The online test oracle takes up compute time because it inspects the state during test execution. This inspecting of state slows down the test execution and may become an issue with time-critical SUT's. On the other hand, some issues - like the SUT become unresponsive - can only be checked during test execution. An offline test oracle is inspecting data that is gartered when test execution has finished. Especially with larger data sets, this can become helpful. Inspecting the data may run in parallel, which can speed up the test oracle. Additionally, when developers create new offline test oracles, they can inspect the recorded data instead of executing a new test run.
+    Each variant come with their strengths and weaknesses. The online test oracle takes up compute time because it inspects the state during test execution. This inspecting of state slows down the test execution and may become an issue with time-critical SUT's. On the other hand, some issues - like the SUT become unresponsive - can only be checked during test execution. An offline test oracle is inspecting data that is gathered when test execution has finished. Especially with larger data sets, this can become helpful. Inspecting the data may run in parallel, which can speed up the test oracle. Additionally, when developers create new offline test oracles, they can inspect the recorded data instead of executing a new test run. \cite{de2019offline}
 
     Besides the online and offline test oracle variants, test oracles can also be places under four categories. Barr et al. conducted a survey and classify test oracles into four categories. In Section \ref{to:four-cat} the four categories are explained. 
 
     \subsubsection{Four categories} \label{to:four-cat}
  
+    % TESTAR has some built-in oracles. but can also be created.
 
 \subsection{How is data retrieved}
 
@@ -54,7 +76,9 @@ public void testAdd(){
     %background questions. what is now and what do we already have
     %- what is a model? -> Background
     
+    \subsubsection{GUI State} \label{gui-state}
     %state is an application in state -> 
+
 
 
 
@@ -82,4 +106,4 @@ public void testAdd(){
 
     Despite being a NoSQL database, OrientDB does support SQL as a query language \cite{sql-lang} albeit that it does not support all SQL statements. The majority of developers have experience with SQL \cite{sql-stats} as a result, new developers and students can start querying the TESTAR data and start expanding its features.
     
-    In addition to TESTAR, other application can also query the state model data in the OrientDB database. For example, developers en students can create external tools for a single purpose, like a state model difference application. When building external tools, the TESTAR application can be kept small and focus upon one objective: testing GUI applications. 
+    In addition to TESTAR, other application can query the state model data in the OrientDB database as well. For example, developers en students can create external tools for a single purpose, like a state model difference application. When building external tools, the TESTAR application can be kept small and focus upon one objective: testing GUI applications. 
