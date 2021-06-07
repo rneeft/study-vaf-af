@@ -26,6 +26,7 @@
 \RequirePackage{subfigure}
 \RequirePackage{graphics}
 \RequirePackage{geometry}
+\usepackage{tabularx}
 \usetikzlibrary{decorations,decorations.pathmorphing,arrows,arrows.meta,automata,trees,backgrounds,petri,shapes,shapes.geometric,quotes,fit,positioning,calc}
 \RequirePackage[pagebackref=true,plainpages=false]{hyperref}
 \newcommand*\ourmfamily{\rmfamily}

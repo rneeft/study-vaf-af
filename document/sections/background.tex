@@ -16,27 +16,58 @@
     TESTAR - or TEST* - is an automated software testing tool for the GUI level \cite{testar-about}. TESTAR started within the context of the \acrfull{fittest} project. TESTAR is open-source, the source code is published on GitHub \footnote{ \url{https://github.com/TESTARtool/TESTAR\_dev}}. A screenshot of the TESTAR tool is displayed in figure \ref{fig:testar}.
     
     \begin{figure}[h]
-        \includegraphics{pics/testar.png}
+        \includegraphics[scale=0.5]{pics/testar.png}
         \caption{Screenshot of the testar tool}
         \label{fig:testar}
     \end{figure}
     
     TESTAR has several \emph{execution modes} in which it interacts with the SUT \cite{testar-manual}. From left to right, in figure \ref{fig:testar}, those are Spy, Generate, Record, Replay and View mode. 
 
-    The \emph{Spy} execution mode allows the user to inspect a SUT and see how TESTAR is interpreting the widgets on the screen. Figure \ref{fig:calc-spy} shows the Windows calculator in spy mode. Dots on the GUI indicates actions in which TESTAR can interact. Within TESTAR, it is possible to filter actions. TESTAR will then not execute these actions. The actions are given a silver dot. A list with properties about the widget is shown when hovering, as well as a unique identifier of the current \emph{state}, more information about the state and the unique identifier can be found at section \ref{gui-state}.
+    The \emph{Spy} mode allows the user to inspect a SUT and "see" how TESTAR is interpreting the widgets on the screen. Figure \ref{fig:calc-spy} shows the Windows calculator in spy mode. Dots on the GUI indicates actions with which TESTAR can interact. Within TESTAR, it is possible to filter actions. TESTAR will then not execute these actions. The actions are given a silver dot colour. A list with properties about the widget is shown when hovering, as well as a unique identifier of the current \emph{state}, more information about the state and the unique identifier can be found at section \ref{state}.
 
     \begin{figure}[h]
-        \includegraphics{pics/calc-state.png}
-        \caption{Screenshot of Windows calculator with TESTAR's Spy mode enabled.}
-        \label{fig:calc-spy}
+        \includegraphics[scale=0.5]{pics/testar.png}
+        \caption{Screenshot of the TESTAR tool}
+        \label{fig:testar}
     \end{figure}
 
+    In the \emph{Generate} mode will TESTAR will start testing the specified system. Section \ref{testar-testauto} for more detail about TESTAR test automation. 
+    
+    The \emph{}{Record} mode allows a tester to record a test sequence manually. In the \emph{Replay} mode, existing test execution can be re-executed and lastly, in the \emph{Review} mode allows existing test executions to be viewed. 
+
+    \subsubsection{TESTAR automation} \label{testar-testauto}
+    TESTAR works without any test scripts. It falls into the \emph{GUI Ripper} and \emph{Monkey testing} categories. Memon et al. introduced the term GUI ripping \cite{gui-ripping} as a process to obtain the GUI's structure and execution behaviour automatically.
+
+    A GUI exists out of a non-empty set of UI components, known as \emph{widgets}. Examples of widgets a Window or a button, more examples can be found in table \ref{tables:widgets} \cite{VosAho2021}. 
+
+        \begin{tabularx}{\textwidth}{ 
+          | >{\raggedright\arraybackslash}X 
+          | >{\raggedright\arraybackslash}X 
+          | >{\raggedright\arraybackslash}X | }
+            \hline
+            Windows & Menus & Controls \\
+            \hline
+            \hline
+            main windows & menu bars & buttons \\
+            child windows & dropdown menus & textbox \\
+            popup windows & context-aware menus & links \\
+            && radio buttons \\
+            && checkboxes\\
+            && dropdown select boxes\\
+            && sliders\\
+            && tabs\\
+            && scrollbars \\
+            \hline
+        \end{tabularx}
+        \captionof{table}{Example of GUI widgets \cite{VosAho2021}}\label{tables:widgets}
+        
+        
     % -> tool to (smart) monkey test GU -> works without scripts. -> no maintenance costs -> 4 modes (spy,generate,record, replay, view)
     % What is a widget -> obtaining state with widgets -> generate action set -> selection action.
     % maybe copy figure 1 in here as a reference. 
     % The state is being checked with a test oracle (next section).
 
-\subsection{How is the SUT tested}
+    \subsection{How is the SUT tested}
     When software is tested, a method is needed to check the correct behaviour of the SUT. The method of checking is formally known as a \emph{test oracle} \cite{testOracles}. An example of a test oracle widely used by developers is the code \emph{assertions}, which is a Boolean assertion. Developers can create assertions in software to check its behaviour during runtime \cite{barr2014oracle}. Assertions can also be used in unit tests as displayed by listing \ref{code:assert}. 
 
 %% do not indent code since it indents its extra in the LaTeX output
