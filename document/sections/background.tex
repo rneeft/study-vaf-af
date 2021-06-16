@@ -1,28 +1,42 @@
 \section{Background} \label{background}
 This section describes the background of this proposal and contains information that is available but might not be known by students and readers. 
 
-\subsection{History of GUI testing}
+\subsection{Introduction into GUI Testing}
+Ever since the first line of software is written, testers are testing its workings.While in the early day of software, the \acrfull{ui} was mainly terminals based or a set of blinking LEDs \cite{altair8800} \footnote{For example the ALTAIR 8800 computer \cite{altair8800}}, today we have an ever-increasing amount of \acrfull{gui} applications. Testings a GUI application is labour intensive and cost a lot of money. \cite{gui-history}
 
-% what is GUI testing?
-% What role place GUI testing in the testing spectrum? (compared with unit / integration testing)
-% First we had manually testing as old as the start of development -> Capture and Replay CR -> CR becomes automated -> scripted (monkey testing).
+The first step in automation was to automate the work of the tester. This automation was accomplished by using Capture and replay (CR) software. A tester will record a test scenario into the CR software, and then the CR software will execute the test case when needed. Using CR software, the time needed to retest software decrease; however, the big downside is that when software changes, so must the recording scripts \cite{gui-history}.
+
+\acrfull{mbgt} is the second step in automation. With MBGT, the GUI elements and behaviour is abstract on a higher level. The created models are used to generate abstract test cases. Those abstract test cases need to be mapped or transformed to get concrete test cases that are executed on the SUT. The downside of MBGT is the effort required to create the models and the need to have formal modelling expertise. Formal modelling expertise is not needed with the latest step in test automation: model inference. 
+
+The \emph{model inference}, also known as model extraction and GUI Ripping \cite{gui-ripping}, is the current state-of-the-art approach to automate GUI testing \cite{gui-history}. There are two ways to achieve this; the first is a static approach where the source code of the SUT is used to create a GUI model. The second is a dynamic approach where the GUI state is captured and extracted while being executed. 
+
+The static approach has several downsides. First, the source code must be available, which is not always the case and secondly, it is challenging to capture behaviour based on the GUI source code. For example, with HTML, it is easy to generate a model; however, its behaviour is either in Javascript or server code. Overcoming those downsides can be achieved by executing the SUT. 
+
+The dynamic approach captures the model during test execution. The automated test tool interacts with the SUT in a scriptless of randomly exercising way. This random scriptless approach is called \emph{Monkey testing}. Usually, test monkeys have no idea in which state the SUT is in and what type of input is allowed. It is therefore essential to make the test monkey smarter. A 'smart test monkey' can be achieved by making "see" the UI elements (Section \ref{data-retrieval}). Section \ref{testar-testauto} will give more details about how TESTAR is using smart test monkeys.
+
 
 \subsection{What is TESTAR?}
 TESTAR - or TEST* - is an automated software testing tool for the GUI level \cite{testar-about}. TESTAR started within the context of the \acrfull{fittest} project. TESTAR is open-source, the source code is published on GitHub \footnote{ \url{https://github.com/TESTARtool/TESTAR\_dev}}. A screenshot of the TESTAR tool is displayed in figure \ref{fig:testar}.
 
+\begingroup
+\captionsetup{type=figure}
 \includegraphics[scale=0.5]{pics/testar.png}
 \captionof{figure}{Screenshot of the TESTAR tool}\label{fig:testar}
+\endgroup
 
 TESTAR has several \emph{execution modes} in which it interacts with the SUT \cite{testar-manual}. From left to right, in figure \ref{fig:testar}, those are Spy, Generate, Record, Replay and View mode. 
 
 The \emph{Spy} mode allows the user to inspect a SUT and "see" how TESTAR is interpreting the widgets on the screen. Figure \ref{fig:calc-spy} shows the Windows calculator in spy mode. Dots on the GUI indicates actions with which TESTAR can interact. Within TESTAR, it is possible to filter actions. TESTAR will then not execute these actions. The actions are given a silver dot colour. A list with properties about the widget is shown when hovering, as well as a unique identifier of the current \emph{state}, more information about the state and the unique identifier can be found at section \ref{gui-state}.\par
 
+\begingroup
+\captionsetup{type=figure}
 \includegraphics{pics/calc-state.png}
 \captionof{figure}{Screenshot of the Calculator with TESTAR Spy}\label{fig:calc-spy}
+\endgroup
 
-In the \emph{Generate} mode will TESTAR will start testing the specified system. Section \ref{testar-testauto} for more detail about TESTAR test automation. \par
+In the \emph{Generate} mode will TESTAR will start testing the specified system. Section \ref{testar-testauto} for more detail about TESTAR test automation.
 
-The \emph{Record} mode allows a tester to record a test sequence manually. In the \emph{Replay} mode, existing test execution can be re-executed and lastly, in the \emph{Review} mode allows existing test executions to be viewed. \par
+The \emph{Record} mode allows a tester to record a test sequence manually. In the \emph{Replay} mode, existing test execution can be re-executed and lastly, in the \emph{Review} mode allows existing test executions to be viewed.
 
 \subsubsection{TESTAR automation} \label{testar-testauto}
     
@@ -33,7 +47,7 @@ TESTAR works without any test scripts but is uses GUI Ripper and Monkey testing 
     % The state is being checked with a test oracle (next section).
 
 \subsection{How is the SUT tested}
-When software is tested, a method is needed to check the correct behaviour of the SUT. The method of checking is formally known as a \emph{test oracle} \cite{testOracles}. An example of a test oracle widely used by developers is the code \emph{assertions}, which is a Boolean assertion. Developers can create assertions in software to check its behaviour during runtime \cite{barr2014oracle}. Assertions can also be used in unit tests as displayed by listing \ref{code:assert}. 
+When software is tested, a method is needed to check the correct behaviour of the SUT. The method of checking is formally known as a \emph{test oracle}x     \cite{testOracles}. An example of a test oracle widely used by developers is the code \emph{assertions}, which is a Boolean assertion. Developers can create assertions in software to check its behaviour during runtime \cite{barr2014oracle}. Assertions can also be used in unit tests as displayed by listing \ref{code:assert}. 
 
 %% do not indent code since it indents its extra in the LaTeX output
 \begin{lstlisting}[language=Java, caption=Assertion, label=code:assert]
@@ -53,16 +67,12 @@ Test oracle comes in two variants, \emph{online} or \emph{on-the-fly} test oracl
 
 Each variant come with their strengths and weaknesses. The online test oracle takes up compute time because it inspects the state during test execution. This inspecting of state slows down the test execution and may become an issue with time-critical SUT's. On the other hand, some issues - like the SUT become unresponsive - can only be checked during test execution. An offline test oracle is inspecting data that is gathered when test execution has finished. Especially with larger data sets, this can become helpful. Inspecting the data may run in parallel, which can speed up the test oracle. Additionally, when developers create new offline test oracles, they can inspect the recorded data instead of executing a new test run. \cite{de2019offline}
 
-Besides the online and offline test oracle variants, test oracles can also be places under four categories. Barr et al. conducted a survey and classify test oracles into four categories. In Section \ref{to:four-cat} the four categories are explained. 
-
-\subsubsection{Four categories} \label{to:four-cat}
-
-% TESTAR has some built-in oracles. but can also be created.
-
-\subsection{How is data retrieved}
+\subsection{How is data retrieved} \label{data-retrieval}
 
 Section \ref{testar-testauto} discussed how TESTAR is using GUI ripping to obtain the GUI's structure. A GUI exists out of a non-empty set of UI components, known as \emph{widgets}. Examples of widgets is a Window or a button; more examples can be found in table \ref{tables:widgets} \cite{VosAho2021}. The widgets are structured hierarchy in a \emph{widget tree}. Each node in the tree is a widget with its related properties, such as the title, position, and role.
 
+\begingroup
+\captionsetup{type=table}
 \begin{tabularx}{\textwidth}{ 
   | >{\raggedright\arraybackslash}X 
   | >{\raggedright\arraybackslash}X 
@@ -83,15 +93,20 @@ Section \ref{testar-testauto} discussed how TESTAR is using GUI ripping to obtai
     \hline
 \end{tabularx}
 \captionof{table}{Example of GUI widgets \cite{VosAho2021}}\label{tables:widgets}
+\endgroup
 
  The widgets are structured hierarchy in a \emph{widget tree}. Each node is a widget with its corresponding properties inside the tree, such as the title, position, and role. In figure \ref{fig:widget-tree} a compact widget tree is shown for the calculator. 
 
+\begingroup
+\captionsetup{type=figure}
 \includegraphics{pics/calc-tree.png}
 \captionof{figure}{A compact version of a widget tree for the calculator.}\label{fig:widget-tree}
+\endgroup
 
 %% Windows Automation API.
 %% JavaAccessBridge
 %% Selenium Chromedriver
+%% Appinum
 %\subsubsection{Windows Automation API}
 %\subsubsection{JavaAccessBridge}
 %\subsubsection{Selenium Chromedriver}
@@ -126,4 +141,4 @@ The last model is the \hypertarget{db:object}{\emph{object}}, which supports inh
 
 Despite being a NoSQL database, OrientDB does support SQL as a query language \cite{sql-lang} albeit that it does not support all SQL statements. The majority of developers have experience with SQL \cite{sql-stats} as a result, new developers and students can start querying the TESTAR data and start expanding its features.\par
 
-In addition to TESTAR, other application can query the state model data in the OrientDB database as well. For example, developers en students can create external tools for a single purpose, like a state model difference application. When building external tools, the TESTAR application can be kept small and focus upon one objective: testing GUI applications. 
+In addition to TESTAR, other application can query the state model data in the OrientDB database as well. For example, developers and students can create external tools for a single purpose, like a state model difference application. When building external tools, the TESTAR application can be kept small and focus upon one objective: testing GUI applications. 
