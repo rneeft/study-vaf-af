@@ -8,7 +8,6 @@
 \ProcessOptions\relax
 \LoadClass[12pt]{article}
 
-\usepackage{titling}
 \RequirePackage{amsmath}
 \RequirePackage{amssymb}
 \RequirePackage[nooneline,footnotesize]{caption}

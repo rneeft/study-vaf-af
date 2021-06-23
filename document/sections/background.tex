@@ -8,14 +8,13 @@ The first step in automation was to automate the work of the tester. This automa
 
 \acrfull{mbgt} is the second step in automation. With MBGT, the GUI elements and behaviour is abstract on a higher level. The created models are used to generate abstract test cases. Those abstract test cases need to be mapped or transformed to get concrete test cases that are executed on the SUT. The downside of MBGT is the effort required to create the models and the need to have formal modelling expertise. Formal modelling expertise is not needed with the latest step in test automation: model inference. 
 
-The \emph{model inference}, also known as model extraction and GUI Ripping \cite{gui-ripping}, is the current state-of-the-art approach to automate GUI testing \cite{gui-history}. There are two ways to achieve this; the first is a static approach where the source code of the SUT is used to create a GUI model. The second is a dynamic approach where the GUI state is captured and extracted while being executed. 
+The \emph{model inference}, also known as model extraction and GUI Ripping \cite{gui-ripping}, is the current state-of-the-art approach to automate GUI testing \cite{gui-history}. Inferred models are state graphs based on the GUI of the SUT. There are two ways to generate inferred models; the first is a static approach where the source code of the SUT is used to create a GUI model. The second is a dynamic approach where the GUI state is captured and extracted while being executed. 
 
 The static approach has several downsides. First, the source code must be available, which is not always the case and secondly, it is challenging to capture behaviour based on the GUI source code. For example, with HTML, it is easy to generate a model; however, its behaviour is either in Javascript or server code. Overcoming those downsides can be achieved by executing the SUT. 
 
 The dynamic approach captures the model during test execution. The automated test tool interacts with the SUT in a scriptless of randomly exercising way. This random scriptless approach is called \emph{Monkey testing}. Usually, test monkeys have no idea in which state the SUT is in and what type of input is allowed. It is therefore essential to make the test monkey smarter. A 'smart test monkey' can be achieved by making "see" the UI elements (Section \ref{data-retrieval}). Section \ref{testar-testauto} will give more details about how TESTAR is using smart test monkeys.
 
-
-\subsection{What is TESTAR?}
+\subsection{What is TESTAR?} \label{what-is-testar}
 TESTAR - or TEST* - is an automated software testing tool for the GUI level \cite{testar-about}. TESTAR started within the context of the \acrfull{fittest} project. TESTAR is open-source, the source code is published on GitHub \footnote{ \url{https://github.com/TESTARtool/TESTAR\_dev}}. A screenshot of the TESTAR tool is displayed in figure \ref{fig:testar}.
 
 \begingroup
@@ -38,16 +37,27 @@ In the \emph{Generate} mode will TESTAR will start testing the specified system.
 
 The \emph{Record} mode allows a tester to record a test sequence manually. In the \emph{Replay} mode, existing test execution can be re-executed and lastly, in the \emph{Review} mode allows existing test executions to be viewed.
 
-\subsubsection{TESTAR automation} \label{testar-testauto}
-    
-TESTAR works without any test scripts but is uses GUI Ripper and Monkey testing techniques. \emph{GUI Ripping}, first introduced by Memon et al. \cite{gui-ripping}, is a process to obtain the GUI's structure and execution behaviour automatically. \emph{Monkey testing} is a process in which decisions are randomly chosen. 
+\subsubsection{TEST automation} \label{testar-testauto}
+TESTAR works without any test scripts but is uses GUI Ripper and Monkey testing techniques. \emph{GUI Ripping}, first introduced by Memon et al. \cite{gui-ripping} and is a process to obtain the GUI's structure and execution behaviour automatically. \emph{Monkey testing} is a process in which decisions (interactions with the GUI) are randomly chosen. Section \ref{data-retrieval} will give more insights into GUI Ripping.
+TESTAR is using a flow to execute tests on the SUT. This flow is as follows:
+\begin{enumerate}
+    \item Start the SUT
+    \item Scan the GUI and obtain the state (Section \ref{gui-state})
+    \item Finding and selecting an action to execute
+    \item Evaluate state with a test oracle (Section \ref{test-oracles})
+    \item Stop the SUT when no actions are left to be executed or restart the SUT when more sequences are required.
+\end{enumerate}
 
-    % -> tool to (smart) monkey test GU -> 
-    % maybe copy figure 1 in here as a reference. 
-    % The state is being checked with a test oracle (next section).
+\begingroup
+\captionsetup{type=figure}
+\includegraphics[scale=0.8]{pics/testar-test-cycle.png}
+\captionof{figure}{TESTAR test cycle \cite{VosAho2021}}\label{fig:testar-test-cycle}
+\endgroup
 
-\subsection{How is the SUT tested}
-When software is tested, a method is needed to check the correct behaviour of the SUT. The method of checking is formally known as a \emph{test oracle}x     \cite{testOracles}. An example of a test oracle widely used by developers is the code \emph{assertions}, which is a Boolean assertion. Developers can create assertions in software to check its behaviour during runtime \cite{barr2014oracle}. Assertions can also be used in unit tests as displayed by listing \ref{code:assert}. 
+Figure \ref{fig:testar-test-cycle} show the flow graphically \cite{VosAho2021}. TESTAR manages everything inside the grey box. The test specialist needs to provide SUT details to TESTAR like which actions should not be executed, select a selection mechanism, and they should define which SUT behaviour is correct and which is not (Section \ref{test-oracles}). 
+
+\subsection{How is the SUT tested} \label{test-oracles}
+When software is tested, a method is needed to check the correct behaviour of the SUT. The method of checking is formally known as a \emph{test oracle} \cite{testOracles}. An example of a test oracle widely used by developers is the code \emph{assertions}, which is a Boolean assertion. Developers can create assertions in software to check its behaviour during runtime \cite{barr2014oracle}. Assertions can also be used in unit tests as displayed by listing \ref{code:assert}. 
 
 %% do not indent code since it indents its extra in the LaTeX output
 \begin{lstlisting}[language=Java, caption=Assertion, label=code:assert]
@@ -103,20 +113,27 @@ Section \ref{testar-testauto} discussed how TESTAR is using GUI ripping to obtai
 \captionof{figure}{A compact version of a widget tree for the calculator.}\label{fig:widget-tree}
 \endgroup
 
-%% Windows Automation API.
-%% JavaAccessBridge
-%% Selenium Chromedriver
-%% Appinum
-%\subsubsection{Windows Automation API}
-%\subsubsection{JavaAccessBridge}
-%\subsubsection{Selenium Chromedriver}
+\subsection{Widget data API}
 
-%background questions. what is now and what do we already have
-%- what is a model? -> Background
-    % What is a widget -> obtaining state with widgets -> generate action set -> selection action.
+In order to retrieve data from a SUT, TESTAR is making use of external API's to access widgets that are part of the GUI \cite{thesisMulders}. TESTAR is using three different API's.
+
+In order to test desktop application, TESTAR makes use of the Windows Automation API. The purpose of the Windows Automation API is to expose rich information about UI elements\cite{win-api-info}. For web applications, TESTAR uses Selenium Chromedriver. The Chromedriver is a tool for automated testing. It provides capabilities for navigating web pages, user input, and JavaScript execution \cite{chrome-driver-info}. The latest API that TESTAR is using is Appinum. Appinum is a test automation tool for native, mobile web, and hybrid applications on iOS mobile, Android mobile, and Windows desktop platforms \cite{apinum-info}
 
 \subsubsection{GUI State} \label{gui-state}
-%state is an application in state -> 
+
+The title of this research proposal is \emph{"\thetitle"}. An inferred model is a directed graph with state and actions. Each vertex represents the application's state, a snapshot of the visible GUI when no actions are executed, \cite{gui-history, thesisMulders} and the edges represent an action, like pressing a button. Figure \ref{fig:state-example} shows an example of a graph created for the Windows calculated (UI elements have been trimmed for space purposes).
+
+\begingroup
+\captionsetup{type=figure}
+\includegraphics[scale=0.5]{pics/calc-state-example.png}
+\captionof{figure}{An example state graph for the Windows Calculator.}\label{fig:state-example}
+\endgroup
+
+A directed graph with each vertex a screenshot of the SUT is an example of the \emph{Murphy} tool's output. \emph{Murphy} is developed by a software company from Finland (F-Secure) that can be used to extract GUI models for testing GUI applications automatically. \cite{aho2013industrial}. Although the context for the research is TESTAR, Murphy can be research to learn how it detects changes and apply that knowledge to TESTAR \cite{murphy-extract-gui}.
+
+To identify the state (and actions), TESTAR calculates two state identifiers; an abstract and concrete state identifier \cite{thesisMulders}. For the concrete state identifier, all the properties of a widget are used. For the abstract identifier, a subset of the properties is used. It is configurable which properties are used for the abstract identifier. By default the properties \textit{role}, \textit{title}, \textit{position} and \textit{enabled} are used.
+
+TESTAR uses the following hashing algorithm: For each widget, the used properties are concatenated and hashed. Those hashed are then joined and hashed to retrieve the hash used to identify the state.
 
 \subsection{How is data persisted}
 
