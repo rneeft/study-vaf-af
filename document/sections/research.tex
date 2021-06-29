@@ -4,11 +4,12 @@
     \subsection{Context}
     What is the context of the research. 
     
-    Creation of test oracles are out of scope.
+   % Creation of test oracles are out of scope.
     
-    The main research question will be around finding bugs with of two inferred models. Even tough generating models is needed, no research will be executed on generating those.
+    % due to the experiment below sentence is false
+    %The main research question will be around finding bugs with two inferred models. Even though generating models is needed, no research will be executed on generating those.
     
-    We can also test the outcome of TESTAR by infering models of the same version SUT and comparing those two models. Those two models should not contain any differences. 
+    %We can also test the outcome of TESTAR by infering models of the same version SUT and comparing those two models. Those two models should not contain any differences. 
 
     \subsection{Research questions}
         
@@ -20,6 +21,14 @@
         %- What can TESTAR learn from Murphy?
         
         \begin{questions}
+            \item Which code-changes can create a usable graph for difference \label{rq:model-changes}
+            \item On which level do we need to find changes \label{rq:model-change-level}
+        \end{questions}
+        
+        Since Murphy discovered difference with the help of Image comparison
+        
+        
+        \begin{questions}[resume]
             \item Which classification can be given to a difference in two state diagrams? \label{rq:classifications} 
             \begin{questions}
                 \item Which algorithm can be used to find differences between two state diagrams? \label{rq:algorithm}    

@@ -7,32 +7,52 @@
     %- What are state models in TESTAR?
     %How are state models in TESTAR Now.
     
-    \subsection{Inferring state models in TESTAR}
-    In a recent student master graduation project, Inferring state models in TESTAR, \cite{thesisMulders}  the foundation is created to build state models with TESTAR. The result can be found inside the \verb|StateModel| package\footnote{\url{https://github.com/TESTARtool/TESTAR_dev/tree/master/testar/src/nl/ou/testar/StateModel}}
+    %\subsection{Inferring state models in TESTAR}
+    %In a recent student master graduation project, Inferring state models in TESTAR, \cite{thesisMulders}  the foundation is created to build state models with TESTAR. The result can be found inside the \verb|StateModel| package\footnote{\url{https://github.com/TESTARtool/TESTAR_dev/tree/master/testar/src/nl/ou/testar/StateModel}}
     
-    -> is saved in an OrientDB database - > which gives good query options -> viewer is build to see the model. 
+    %-> is saved in an OrientDB database - > which gives good query options -> viewer is build to see the model. 
         
-    Future work might be adding unit test on the part that will be touched since no code coverage has been found for the package.
+    %Future work might be adding unit test on the part that will be touched since no code coverage has been found for the package.
 
     %What is a state 3.3
         
         %\subsubsection{State of the source code}
         
         %Mulders concluded in his thesis \cite{thesisMulders} that 
-        
+\subsection{State model difference}
+The \verb|StateModel.Difference| package, added by Ricós\cite{stateDiff}, offers a proof of concept for calculating differences between the state models. With this proof of concept, two inferred models are being compared with each other. The comparison is being made with the \verb|abstractStateId|. 
 
+Ricós difference algorithm\cite{stateDiff} outputs two classification of changes between two versions: added and removed state. Let $A$ be a set of \verb|abstractStateId|'s of version 1 of the SUT, let $B$ be a set of \verb|abstractStateId|'s of version 2 of the SUT. The removed states can be written as
+\[A-B = \lbrace x | x \in A \wedge x \notin B \rbrace\]
+the states that are added can be written as
+\[B-A = \lbrace x | x \in B \wedge x \notin A \rbrace\]
 
-    \subsection{State model difference}
-        The \verb|StateModel.Difference| package was added by Ricós\cite{stateDiff} and offers a proof of concept for calculating differences between the state models of two versions. 
-        
-        Ricós started with a proof of concept for state model difference \footnote{\url{https://github.com/TESTARtool/TESTAR_dev/tree/state_model_difference}}
-        give two sut version -> calculates difference in added and removed states.
-        
-        Let $A$ be a set of states of version 1 of the SUT, let $B$ be a set of states of version 2 of the SUT. The removed states can be written as
-        \[A-B = \lbrace x | x \in A \wedge x \notin B \rbrace\]
-        the states that are added can be written as
-        \[B-A = \lbrace x | x \in B \wedge x \notin A \rbrace\]
-        
-        Future work can be viewing the SUT en all version as a universe of states to see which states are removed and added, maybe moved (if location is not part of the state)
-        
-        Future work -> adding unit tests since those are not present -> refactoring of the code since some file do not have a clear Separation of concern. -> one can observation the return and input values are form of \verb|string| (e.g. \verb|string| \verb|Set<String>| etc) -> can lead to primitive obsession -> investigation is needed to solve this. 
+\begingroup
+\captionsetup{type=figure}
+\includegraphics[scale=0.5]{pics/attributes-state-model.png}
+\captionof{figure}{Select widgets attributes for the abstractStateId}\label{fig:advance}
+\endgroup
+
+The use of the \verb|abstractStateId| makes it vital to choose sufficient widget attributes. Choosing too few attributes can result in many differences, whereas too many attributes can change even the tiniest detail. Choosing the widget attributes can be done with the 'Advance' screen under the State model tab, see Figure \ref{fig:advance}
+
+An experiment application is created to discover what the best setting can be. Figure \ref{fig:exp-v1}, \ref{fig:exp-v2} and \ref{fig:exp-v3} shows the three different version of the experiment application. As one can observe, the differences between version 1 and version 2 are the added button with the label 'Hello v2' and between version 2 and 3 the buttons' colour and position. However, when using 'widget title' and 'widget control type' as widget attributes for the abstract state model, a different result is displayed. Namely: between the first two versions, the button with the label 'Hello v1' is removed, and the buttons with the labels 'Hello v1' and 'Hello v2' are added. Between versions 2 and 3, no differences are observed. 
+
+\begingroup
+\captionsetup{type=figure}
+\includegraphics[scale=1]{pics/exp-v1.png}
+\captionof{figure}{Version 1 of the experiment application}\label{fig:exp-v1}
+\endgroup
+
+\begingroup
+\captionsetup{type=figure}
+\includegraphics[scale=1]{pics/exp-v2.png}
+\captionof{figure}{Version 2 of the experiment application}\label{fig:exp-v2}
+\endgroup
+
+\begingroup
+\captionsetup{type=figure}
+\includegraphics[scale=1]{pics/exp-v3.png}
+\captionof{figure}{Version 3 of the experiment application}\label{fig:exp-v3}
+\endgroup
+
+When looking at the three versions raising a couple of interesting questions; what are interesting changes? Which attributes needs to be taking into account for the abstractStateId? Might it be of more interest to look into the actions instead of the state? Can we leverage image recognition, like with the Murphy tool \cite{murphy-extract-gui}, next to action differences? Can it be helpful to make hashes of combined hashes to discover changes or look deeper into underlying hashes, like in a Merkle tree \cite{merkle-tree} structure?
