@@ -9,73 +9,67 @@
     % due to the experiment below sentence is false
     %The main research question will be around finding bugs with two inferred models. Even though generating models is needed, no research will be executed on generating those.
     
-    %We can also test the outcome of TESTAR by infering models of the same version SUT and comparing those two models. Those two models should not contain any differences. 
+\subsection{Research questions}
+        
+The main research question is: \textbf{How can an automated comparison of inferred models help testers finding bugs?}
 
-    \subsection{Research questions}
-        
-        \textbf{Main research question is:} How can model diff help testers finding bugs???
-        %% specify: "What form of the answer
-        %% remove ambiguity
-        %% specify: which factors influences the RQ
-        
-        %- What can TESTAR learn from Murphy?
-        
-      
-      %  What requirements are there for the model diff. Configuration the model instead of code changes.
-       % useful for the purpose. 
-        
-        \begin{questions}
-            \item What requirement are there for the model diff?
-            \begin{questions}
-                \item What is a useful model for difference calculation?
-            \end{questions}
-            %\item Which code-changes can create a usable graph for difference \label{rq:model-changes}
-            \item On which level do we need to find changes \label{rq:model-change-level}
-        \end{questions}
-        
-        Since Murphy discovered difference with the help of Image comparison
-        
-        \begin{questions}[resume]
-            \item Which classification can be given to a difference in two state diagrams? \label{rq:classifications} 
-            \begin{questions}
-                \item Which algorithm can be used to find differences between two state diagrams? \label{rq:algorithm}    
-            \end{questions}
-        \end{questions}
-        
-        The current algorithm \cite{stateDiff} makes two classifications regarding differences in state-diagrams; added and removed state. As a consequence, two state changes are observed when an action in the \acrshort{sut} is moved. For instance, an about window is moved from the \verb|File| to the \verb|Help| menu. 
-        
-        The hypothesis of \ref{rq:classifications} is that it can help the tester understand what kind of change is made to a new version of the \acrshort{sut}. In addition to the classification of differences, an investigation is needed on how to find differences (\ref{rq:algorithm}).
-        
-        %Image recognition might help in telling difference.
-        %Could it be possible to use abstract image recognition. make a screenshot of an SUT and then fill in parts, like a Text box as a rectangle, button as a solid block etc. 
-        % \includegraphics{document/pics/abstract-ui.png}
-        
-        \begin{questions}[resume]
-            \item What tooling is available to show differences between two or more given state diagrams? \label{rq:differenceTool}
-        \end{questions}
-        
-        With \ref{rq:differenceTool} we also need to include the current state model viewer \cite{thesisMulders}
-        
-        %- How can difference in the state model become visible inside build-in state model visualisation?
-        
-        %- How does the build-in state model work?
-        
-        %sub question: How to get a useful model for the model diff.
-        %what is a useful model... -> depends on model diff requirements
-        
-        %sub question- How can we tell TESTAR to ignore complete entire widgets for state abstraction?
-    
+The main research questions divided into two parts. The first part (\ref{rq:detect-changes}) will research how to detect changes between versions of the same GUI software (SUT)?\cite{testar-todo}. The second part (RQ \ref{rq:diff-visualisation}) will research how to visualise the detected changes. The research questions are as follows: 
+
+\begin{questions}
+    \item How to detect changes between two versions of the SUT? \label{rq:detect-changes}
+    \begin{questions}
+        \item What requirements are there for the inferred model for change detection? \label{rq:model-requirements}
+        \item What is a useful model for change detection? \label{rq:useful-model}
+        \item Which configuration will generate a useful model? \label{rq:gen-useful-model}
+        \item Which classification can be given to a difference in a state model? \label{rq:classifications} 
+        \item Which algorithm can be used to detect differences between state diagrams? \label{rq:difference-algorithm}
+    \end{questions}
+
+    \item Which tool can present the detected differences to the user? \label{rq:diff-visualisation}
+    \begin{questions}
+        \item What tooling is available to show the detected differences? \label{rq:tooling}
+        \item How to visualise each type of change? \label{rq:type-visualisation}
+        \item How to generate the shortest set with actions that helps the user to reach the changed state in the SUT? \label{rq:shortest-set}    
+    \end{questions}
+
+\end{questions}
+
+\subsubsection{\ref{rq:model-requirements} What requirements are there for the inferred model for change detection?}
+The outcome of \ref{rq:model-requirements} is a list of requirements for the inferred model that are needed to enable change detection. For example, can a non-deterministic state model be used? However, it also includes requirements for the algorithm, like, what are acceptable calculation speeds and how big can a state model be while still complying with the speed requirement. 
+
+\subsubsection{\ref{rq:useful-model}What is a useful model for change detection?}
+In the master thesis, Mulders asked the question "\textit{What makes a model useful for TESTAR's purpose}" \cite{thesisMulders}. He used the Vaandrager's criteria \cite{vaandrager} to answer that question. To validate the requirements from RQ \ref{rq:model-requirements} the Vaandrager's criteria will be used. 
+
+\subsubsection{\ref{rq:gen-useful-model} Which configuration will generate a useful model?}
+There are a couple of ways to change the outcome of an inferred model, for example, picking widget attributes for the hash calculation. These configurations can influence the usefulness of the model. The outcome of \ref{rq:gen-useful-model} should result in a TESTAR configuration file that configures TESTAR to generate this useful model. It might be necessary to make code changes in the state model generation.
+
+A thread of validity for \ref{rq:gen-useful-model} is that every application under test needs its unique configuration. Therefore it might be wise to look into all widgets attributes during the change detection and not take the hash of a state for the comparison. The configuration can be used for tuning the model and the change detection by taking the above approach.
+
+\subsubsection{\ref{rq:classifications} Which classification can be given to a difference in a state model?}
+The current algorithm \cite{stateDiff} makes two classifications regarding differences in state diagrams; added and removed state. As a consequence, two state changes are observed when an action in the \acrshort{sut} is moved. For instance, an about window is moved from the \verb|File| to the \verb|Help| menu. The hypothesis of \ref{rq:classifications} is that it can help the tester understand what kind of change is made to a new version of the \acrshort{sut}.
+
+\subsubsection{\ref{rq:difference-algorithm} Which algorithm can be used to detect differences between state diagrams?}
+\ref{rq:difference-algorithm} is the closing question in which the algorithm is coded in Java. In a recent master thesis by Slomb \cite{insert-slomb-hereTODO}, it is possible to run TESTAR in a Docker container. As a consequence, TESTAR can run without a GUI. Therefore the change detection algorithm will run in a separate application, outside the TESTAR context. The result of the change detection needs to be saved to the already existing OrientDb database. 
+
+\subsubsection{\ref{rq:tooling} What tooling is available to show the detected differences?}
+Aside from the inferred model, Mulders also created an application to visualise the models. It is essential to state that Mulders did extensive research on which technology fits his needs best. \ref{rq:tooling} will look at the results of Mulders and revalidate whether the libraries are useable to visualise differences. 
+
+\subsubsection{\ref{rq:type-visualisation} How to visualise each type of change?}
+\ref{rq:type-visualisation} will look into the execution of the visualisation tool. Like \ref{rq:difference-algorithm} this also include moving the visualisation tool into its own application, outside the TESTAR context. The requirements and GUI proposals will be discussed with the TESTAR stakeholders. 
+
+\subsubsection{\ref{rq:shortest-set} How to generate the shortest set with actions that helps the user to reach the changed state in the SUT?}
+One of the requirements of the visualisation is showing how to reach the state is has changed. Dijkstra's algorithm \cite{dijkstra1959note} is a well-known algorithm to find the shortest path for a given graph. However, as Goldberg and Harrelson \cite{goldberg2005computing} showed, it is not the most optimal short path algorithm, especially with massive graphs. 
+
 
     \subsection{Research method}
     
-        A literature study will be conducted for \ref{rq:algorithm} and \ref{rq:differenceTool}. 
+       % A literature study will be conducted for \ref{rq:algorithm} and \ref{rq:differenceTool}. 
         
         % add starting papers for each research question.
         
     \subsection{Validity}
     
-        The answer to \ref{rq:algorithm} can keep changing -> important is to determine what kind of algorithm is good enough to be used in TESTAR.
-        
-        A thread to conclusion of \ref{rq:differenceTool} can be that researches or companies are trying to sell a product -> therefor write material which favors their product -> With all material assessing the objectivity of the material is of great importance. -> Might need to express the favor of the current viewer \cite{thesisMulders} but that could downgrade the conclusion of \ref{rq:differenceTool}. 
-        
-        Before refactoring, unit tests needs to be made -> can only  make unit test based on current implementation with the assumption that all units are working correctly as is. -> We can verify this by comparing the generated state model before and after refactoring.
+        %We can also test the outcome of TESTAR by infering models of the same version SUT and comparing those two models. Those two models should not contain any differences. 
+
+        %A thread to conclusion of \ref{rq:differenceTool} can be that researches or companies are trying to sell a product -> therefor write material which favors their product -> With all material assessing the objectivity of the material is of great importance. -> Might need to express the favor of the current viewer \cite{thesisMulders} but that could downgrade the conclusion of \ref{rq:differenceTool}. 
+    

@@ -270,7 +270,7 @@
 %% create style for research question list
 \newlist{questions}{enumerate}{2}
 \setlist[questions,1]{label=\textbf{RQ\arabic*},ref=RQ\arabic*}
-\setlist[questions,2]{label*=.\textbf{\arabic*},ref=\thequestionsi.\arabic*,leftmargin=9pt}
+\setlist[questions,2]{label*=.\textbf{\arabic*},ref=\thequestionsi.\arabic*,leftmargin=18pt}
 
 %% including acronyms
 \usepackage[acronym, toc]{glossaries}
