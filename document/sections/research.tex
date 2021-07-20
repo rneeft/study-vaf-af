@@ -13,7 +13,7 @@
         
 The main research question is: \textbf{How can an automated comparison of inferred models help testers finding bugs?}
 
-The main research questions divided into two parts. The first part (\ref{rq:detect-changes}) will research how to detect changes between versions of the same GUI software (SUT)?\cite{testar-todo}. The second part (RQ \ref{rq:diff-visualisation}) will research how to visualise the detected changes. The research questions are as follows: 
+The main research questions divided into two parts. The first part (\ref{rq:detect-changes}) will research how to detect changes between versions of the same GUI software (SUT)?\cite{testar-todo}. The second part (\ref{rq:diff-visualisation}) will research how to visualise the detected changes. The research questions are as follows: 
 
 \begin{questions}
     \item How to detect changes between two versions of the SUT? \label{rq:detect-changes}
@@ -25,7 +25,7 @@ The main research questions divided into two parts. The first part (\ref{rq:dete
         \item Which algorithm can be used to detect differences between state diagrams? \label{rq:difference-algorithm}
     \end{questions}
 
-    \item Which tool can present the detected differences to the user? \label{rq:diff-visualisation}
+    \item How to visualise the detected differences to the user? \label{rq:diff-visualisation}
     \begin{questions}
         \item What tooling is available to show the detected differences? \label{rq:tooling}
         \item How to visualise each type of change? \label{rq:type-visualisation}
@@ -49,7 +49,7 @@ A thread of validity for \ref{rq:gen-useful-model} is that every application und
 The current algorithm \cite{stateDiff} makes two classifications regarding differences in state diagrams; added and removed state. As a consequence, two state changes are observed when an action in the \acrshort{sut} is moved. For instance, an about window is moved from the \verb|File| to the \verb|Help| menu. The hypothesis of \ref{rq:classifications} is that it can help the tester understand what kind of change is made to a new version of the \acrshort{sut}.
 
 \subsubsection{\ref{rq:difference-algorithm} Which algorithm can be used to detect differences between state diagrams?}
-\ref{rq:difference-algorithm} is the closing question in which the algorithm is coded in Java. In a recent master thesis by Slomb \cite{insert-slomb-hereTODO}, it is possible to run TESTAR in a Docker container. As a consequence, TESTAR can run without a GUI. Therefore the change detection algorithm will run in a separate application, outside the TESTAR context. The result of the change detection needs to be saved to the already existing OrientDb database. 
+\ref{rq:difference-algorithm} is the closing question in which the algorithm is coded in Java. In a recent master thesis by Slomp \cite{insert-slomp-hereTODO}, it is possible to run TESTAR in a Docker container. As a consequence, TESTAR can run without a GUI. Therefore the change detection algorithm will run in a separate application, outside the TESTAR context. The result of the change detection needs to be saved to the already existing OrientDb database. 
 
 \subsubsection{\ref{rq:tooling} What tooling is available to show the detected differences?}
 Aside from the inferred model, Mulders also created an application to visualise the models. It is essential to state that Mulders did extensive research on which technology fits his needs best. \ref{rq:tooling} will look at the results of Mulders and revalidate whether the libraries are useable to visualise differences. 
@@ -67,7 +67,7 @@ One of the requirements of the visualisation is showing how to reach the state i
         
         % add starting papers for each research question.
         
-    \subsection{Validity}
+    \subsection{Validation}
     
         %We can also test the outcome of TESTAR by infering models of the same version SUT and comparing those two models. Those two models should not contain any differences. 
 
