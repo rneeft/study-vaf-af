@@ -13,7 +13,7 @@
         
 The main research question is: \textbf{How can an automated comparison of inferred models help testers finding bugs?}
 
-The main research questions divided into two parts. The first part (\ref{rq:detect-changes}) will research how to detect changes between versions of the same GUI software (SUT)?\cite{testar-todo}. The second part (\ref{rq:diff-visualisation}) will research how to visualise the detected changes. The research questions are as follows: 
+The main research question is divided into three parts. The first part (\ref{rq:detect-changes}) will research how to detect changes between different versions of the same GUI software (SUT)?\cite{testar-todo}. The second part (\ref{rq:diff-visualisation}) will research how to visualise the detected changes. A third Research Question \ref{rq:validation} is dedicated to validating the previous research questions. The research questions are as follows: 
 
 \begin{questions}
     \item How to detect changes between two versions of the SUT? \label{rq:detect-changes}
@@ -23,6 +23,8 @@ The main research questions divided into two parts. The first part (\ref{rq:dete
         \item Which configuration will generate a useful model? \label{rq:gen-useful-model}
         \item Which classification can be given to a difference in a state model? \label{rq:classifications} 
         \item Which algorithm can be used to detect differences between state diagrams? \label{rq:difference-algorithm}
+        \item Which model or models can be used for change detection? \label{rq:which-models}
+        \item 
     \end{questions}
 
     \item How to visualise the detected differences to the user? \label{rq:diff-visualisation}
@@ -31,13 +33,20 @@ The main research questions divided into two parts. The first part (\ref{rq:dete
         \item How to visualise each type of change? \label{rq:type-visualisation}
         \item How to generate the shortest set with actions that helps the user to reach the changed state in the SUT? \label{rq:shortest-set}    
     \end{questions}
+    
+    \item How to validate the results of \ref{rq:detect-changes} and \ref{rq:diff-visualisation}? \label{rq:validation}
+    \begin{questions}
+        \item What are the requirements for validation applications? \label{rq:req-apps}
+        \item Which open source application can be used for validation? \label{rq:validation-apps}
+        \item 
+    \end{questions}
 
 \end{questions}
 
 \subsubsection{\ref{rq:model-requirements} What requirements are there for the inferred model for change detection?}
 The outcome of \ref{rq:model-requirements} is a list of requirements for the inferred model that are needed to enable change detection. For example, can a non-deterministic state model be used? However, it also includes requirements for the algorithm, like, what are acceptable calculation speeds and how big can a state model be while still complying with the speed requirement. 
 
-\subsubsection{\ref{rq:useful-model}What is a useful model for change detection?}
+\subsubsection{\ref{rq:useful-model} What is a useful model for change detection?}
 In the master thesis, Mulders asked the question "\textit{What makes a model useful for TESTAR's purpose}" \cite{thesisMulders}. He used the Vaandrager's criteria \cite{vaandrager} to answer that question. To validate the requirements from RQ \ref{rq:model-requirements} the Vaandrager's criteria will be used. 
 
 \subsubsection{\ref{rq:gen-useful-model} Which configuration will generate a useful model?}

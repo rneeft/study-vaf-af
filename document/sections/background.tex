@@ -38,7 +38,7 @@ In the \emph{Generate} mode, TESTAR will start testing the specified system. Sec
 The \emph{Record} mode allows a tester to record a test sequence manually. In the \emph{Replay} mode, existing test execution can be re-executed and lastly, the \emph{Review} mode allows existing test executions to be viewed.
 
 \subsubsection{TEST automation} \label{testar-testauto}
-TESTAR works without any test scripts but is uses GUI Ripper and Monkey testing techniques. \emph{GUI Ripping}, first introduced by Memon et al. \cite{gui-ripping} and is a process to obtain the GUI's structure and execution behaviour automatically. As for \emph{Monkey testing}, it is a process in which decisions (interactions with the GUI) are randomly made. Section \ref{data-retrieval} will give more insights into GUI Ripping.
+TESTAR works without test scripts. Instead it uses GUI Ripping and Monkey testing techniques. \emph{GUI Ripping}, first introduced by Memon et al. \cite{gui-ripping} and is a process to obtain the GUI's structure and execution behaviour automatically. As for \emph{Monkey testing}, it is a process in which decisions (interactions with the GUI) are randomly made. Section \ref{data-retrieval} will give more insights into GUI Ripping.
 TESTAR is using a flow to execute tests on the SUT. This flow is as follows:
 \begin{enumerate}
     \item Start the SUT
@@ -57,7 +57,7 @@ TESTAR is using a flow to execute tests on the SUT. This flow is as follows:
 Figure \ref{fig:testar-test-cycle} shows the flow graphically \cite{VosAho2021}. The test specialist needs to provide SUT details to TESTAR, like which actions should not be executed. Devise a selection mechanism that defines which SUT behaviour is correct and which is not(Section \ref{test-oracles}). 
 
 \subsection{How is the SUT tested} \label{test-oracles}
-When software is tested, a method is needed to check the correct behaviour of the SUT. The method of checking is formally known as a \emph{test oracle} \cite{testOracles}. An example of a test oracle widely used by developers is the code \emph{assertions}, which is a Boolean assertion. Developers can create assertions in software to check its behaviour during runtime \cite{barr2014oracle}. Assertions can also be used in unit tests as displayed below on Listing \ref{code:assert}. 
+When software is tested, a method is needed to check the correct behaviour of the SUT. The method of checking is formally known as a \emph{test oracle} \cite{testOracles}. An example of a test oracles widely used by developers are code \emph{assertions}, which are a Boolean assertion. Developers can create assertions in software to check its behaviour during run-time \cite{barr2014oracle}. Assertions can also be used in unit tests as displayed below on Listing \ref{code:assert}. 
 
 %% do not indent code since it indents its extra in the LaTeX output
 \begin{lstlisting}[language=Java, caption=Assertion, label=code:assert]
@@ -73,9 +73,9 @@ public void testAdd(){
 \end{lstlisting}
 
 \subsubsection{Online and Offline Test oracles}
-Test oracle comes in two variants, \emph{online} or \emph{on-the-fly} test oracle and \emph{offline} test oracles \cite{VosAho2021}. With online test oracles, the state under test is being asserted for any anomalies during test execution. For example,  an online test oracle inspects the URL to check for any information being exposed in the query string. Offline test oracles will look into stored data - like logs - to find anomalies after test execution. For example, offline test oracles can inspect all the visited URL's to check for any exposed information in the query strings.
+Test oracles come in two variants, \emph{online} or \emph{on-the-fly} test oracles and \emph{offline} test oracles \cite{VosAho2021}. With online test oracles, the state under test is being asserted for any anomalies during test execution. For example,  an online test oracle inspects the URL to check for any information being exposed in the query string. Offline test oracles will look into stored data - like logs - to find anomalies after test execution. For example, offline test oracles can inspect all the visited URL's to check for any exposed information in the query strings.
 
-Each variant come with their strengths and weaknesses. The online test oracle takes up computation time because it inspects the state during test execution. This inspecting of state slows down the test execution and may become an issue with time-critical SUT's. On the other hand, some issues - like the SUT become unresponsive - can only be checked during test execution. An offline test oracle is inspecting data that is gathered when test execution has finished. Especially with larger data sets, this can become helpful. Inspecting the data may run in parallel, which can speed up the test oracle. Additionally, when developers create new offline test oracles, they can inspect the recorded data instead of executing a new test run. \cite{de2019offline}
+The two test oracles variants are complementary to each other and can run side by side. However, each variant comes with its strengths and weaknesses. The online test oracle takes up computation time because it inspects the state during test execution. This inspecting of state slows down the test execution and may become an issue with time-critical SUT's. On the other hand, some issues - like the SUT become unresponsive - can only be checked during test execution. An offline test oracle is inspecting data that is gathered when test execution has finished. Especially with larger data sets, this can become helpful. Inspecting the data may run in parallel, which can speed up the test oracle. Additionally, when developers create new offline test oracles, they can inspect the recorded data instead of executing a new test run. \cite{de2019offline}
 
 \subsection{How is data retrieved} \label{data-retrieval}
 
@@ -105,7 +105,7 @@ Section \ref{testar-testauto} discussed how TESTAR is using GUI ripping to obtai
 \captionof{table}{Example of GUI widgets \cite{VosAho2021}}\label{tables:widgets}
 \endgroup
 
-The widgets are structured hierarchically in a \emph{widget tree}. Each node in the tree is a widget with its related properties, such as the title, position and role. In figure \ref{fig:widget-tree} a compact widget tree is shown for the calculator. 
+The widgets are structured hierarchically in a \emph{widget tree}. Each node in the tree is a widget with its related properties, such as the title, position and role. In figure \ref{fig:widget-tree} a compact widget tree is shown for the calculator from 
 
 \begingroup
 \captionsetup{type=figure}
@@ -117,7 +117,7 @@ The widgets are structured hierarchically in a \emph{widget tree}. Each node in 
 
 In order to retrieve data from a SUT, TESTAR is making use of external API's to access widgets that are part of the GUI \cite{thesisMulders}. TESTAR is using three different API's.
 
-In order to test desktop application, TESTAR makes use of the Windows Automation API. The purpose of the Windows Automation API is to expose rich information about UI elements\cite{win-api-info}. For web applications, TESTAR uses Selenium Chromedriver. The Chromedriver is a tool for automated testing. It provides capabilities for navigating through web pages, user input, and JavaScript execution \cite{chrome-driver-info}. The latest API that TESTAR is using is Appinum. Appinum is a test automation tool for native, mobile web, and hybrid applications on iOS mobile, Android mobile, and Windows desktop platforms \cite{apinum-info}
+In order to test desktop application, TESTAR makes use of the Windows Automation API. The purpose of the Windows Automation API is to expose rich information about UI elements\cite{win-api-info}. For web applications, TESTAR uses Selenium Chromedriver. The Chromedriver is a tool for automated testing. It provides capabilities for navigating through web pages, user input, and JavaScript execution \cite{chrome-driver-info}. The latest API that TESTAR is using is Appium. Appium is a test automation tool for native, mobile web, and hybrid applications on iOS mobile, Android mobile, and Windows desktop platforms \cite{appium-info}.
 
 \subsubsection{GUI State} \label{gui-state}
 

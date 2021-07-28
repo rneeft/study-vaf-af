@@ -10,9 +10,6 @@
     %\subsection{Inferring state models in TESTAR}
     %In a recent student master graduation project, Inferring state models in TESTAR, \cite{thesisMulders}  the foundation is created to build state models with TESTAR. The result can be found inside the \verb|StateModel| package\footnote{\url{https://github.com/TESTARtool/TESTAR_dev/tree/master/testar/src/nl/ou/testar/StateModel}}
     
-    %-> is saved in an OrientDB database - > which gives good query options -> viewer is build to see the model. 
-        
-    %Future work might be adding unit test on the part that will be touched since no code coverage has been found for the package.
 
     %What is a state 3.3
         
@@ -32,6 +29,8 @@ the states that are added can be written as
 \includegraphics[scale=0.5]{pics/attributes-state-model.png}
 \captionof{figure}{Select widgets attributes for the abstractStateId}\label{fig:advance}
 \endgroup
+
+
 
 The use of the \verb|abstractStateId| makes it vital to choose sufficient widget attributes. Choosing too few attributes can result in conflicting differences, like the same actions are removed and added. Choosing too many attributes can trigger a change in even the tiniest detail, which can be helpful. Choosing the widget attributes can be done with the 'Advance' screen under the State model tab, see Figure \ref{fig:advance}.
 
@@ -55,4 +54,19 @@ An experiment application is created to discover what the best setting can be. F
 \captionof{figure}{Version 3 of the experiment application}\label{fig:exp-v3}
 \endgroup
 
-When looking at the three versions, it raises interesting questions; what are interesting changes? Which attributes needs to be taking into account for the abstractStateId? Might it be of more interest to look into the actions instead of the state? Can we leverage image recognition, like with the Murphy tool \cite{murphy-extract-gui}, next to action differences? Can it be helpful to make hashes of combined hashes to discover changes or look deeper into underlying hashes, like in a Merkle tree \cite{merkle-tree} structure?
+When looking at the three versions, it raises interesting questions; 
+
+What are interesting changes? 
+
+Which attributes needs to be taking into account for the \verb|abstractStateId|? 
+
+Might it be of more interest to look into the actions instead of the state? 
+
+Can we leverage image recognition, like with the Murphy tool \cite{murphy-extract-gui}, next to action differences? 
+
+Can it be helpful to make hashes of combined hashes to discover changes or look deeper into underlying hashes, like in a Merkle tree \cite{merkle-tree} structure?
+
+\subsection{TESTAR in containers}
+A recent master thesis by Slomp explains how TESTAR can be integrated into a \acrfull{ci} environment. He showed integration with Azure DevOps and introduced TESTAR into the world of Docker and containers. A container bundles all the software, configuration files and libraries together so that an application can run \cite{ms-container}. 
+
+When TESTAR is being run within the Azure DevOps pipeline, the TESTAR GUI is not shown. It is not a problem, but it could be an issue when all the users need to install the TESTAR tool to open the analysis.  
