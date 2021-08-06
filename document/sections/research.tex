@@ -18,18 +18,23 @@ The main research question is divided into three parts. The first part (\ref{rq:
 \begin{questions}
     \item How to detect changes between two versions of the SUT? \label{rq:detect-changes}
     \begin{questions}
-        \item What requirements are there for the inferred model for change detection? \label{rq:model-requirements}
-        \item What is a useful model for change detection? \label{rq:useful-model}
-        \item Which configuration will generate a useful model? \label{rq:gen-useful-model}
-        \item Which classification can be given to a difference in a state model? \label{rq:classifications} 
-        \item Which algorithm can be used to detect differences between state diagrams? \label{rq:difference-algorithm}
-        \item Which model or models can be used for change detection? \label{rq:which-models}
-        \item 
+        %\item What requirements are there for the inferred model for change detection? %\label{rq:model-requirements}
+        %\item What is a useful model for change detection? \label{rq:useful-model}
+        %\item Which configuration will generate a useful model? \label{rq:gen-useful-model}
+        %\item Which classification can be given to a difference in a state model? %\label{rq:classifications} 
+        %\item Which algorithm can be used to detect differences between state diagrams? %\label{rq:difference-algorithm}
+        %\item Which model or models can be used for change detection? \label{rq:which-models}
+        %\item 
+        
+        \item What is change detection, and what do we want to use it for?
+        \item Which properties make a model useful for change detection?
+        \item Which TESTAR configuration will generate the useful model?
+        \item How can we find changes between two models?
     \end{questions}
 
     \item How to visualise the detected differences to the user? \label{rq:diff-visualisation}
     \begin{questions}
-        \item What tooling is available to show the detected differences? \label{rq:tooling}
+        \item What tooling is available to show the result of the change detection? \label{rq:tooling}
         \item How to visualise each type of change? \label{rq:type-visualisation}
         \item How to generate the shortest set with actions that helps the user to reach the changed state in the SUT? \label{rq:shortest-set}    
     \end{questions}

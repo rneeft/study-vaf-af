@@ -1,23 +1,11 @@
 \section{Related work} \label{releatedWork}
     
-    This section covers an overview of the material that can be seen as the direct foundation for this proposal.
-    
-    
-        % I believe this sections belongs to the related work
-    %- What are state models in TESTAR?
-    %How are state models in TESTAR Now.
-    
-    %\subsection{Inferring state models in TESTAR}
-    %In a recent student master graduation project, Inferring state models in TESTAR, \cite{thesisMulders}  the foundation is created to build state models with TESTAR. The result can be found inside the \verb|StateModel| package\footnote{\url{https://github.com/TESTARtool/TESTAR_dev/tree/master/testar/src/nl/ou/testar/StateModel}}
-    
+This section covers an overview of the material that can be seen as the direct foundation for this proposal.
 
-    %What is a state 3.3
-        
-        %\subsubsection{State of the source code}
-        
-        %Mulders concluded in his thesis \cite{thesisMulders} that 
 \subsection{State model difference}
-The \verb|StateModel.Difference| package, added by Ricós\cite{stateDiff}, offers a proof of concept for calculating differences between the state models. With this proof of concept, two inferred models are being compared with each other. The comparison is being made with the \verb|abstractStateId|. 
+The \verb|StateModel.Difference| package, added by Ricós\cite{stateDiff}, offers a proof of concept for calculating differences between the state models. With this proof of concept, two inferred models are being compared with each other. For the comparison the \verb|abstractStateId| is being used. This is great for the proof of concept but due to the boolean nature of this comparison, the state either exist or not, it can result in many 'false' changes. 
+
+
 
 Ricós difference algorithm\cite{stateDiff} outputs two classification of changes between two versions: added and removed state. Let $A$ be a set of \verb|abstractStateId|'s of version 1 of the SUT, let $B$ be a set of \verb|abstractStateId|'s of version 2 of the SUT. The removed states can be written as
 \[A-B = \lbrace x | x \in A \wedge x \notin B \rbrace\]
@@ -30,9 +18,9 @@ the states that are added can be written as
 \captionof{figure}{Select widgets attributes for the abstractStateId}\label{fig:advance}
 \endgroup
 
+Using the \verb|abstractStateId| is excellent for the proof of concept and preliminary change detection, but due to the boolean nature of this comparison, the state either exists or not, it can result in many 'false' changes.
 
-
-The use of the \verb|abstractStateId| makes it vital to choose sufficient widget attributes. Choosing too few attributes can result in conflicting differences, like the same actions are removed and added. Choosing too many attributes can trigger a change in even the tiniest detail, which can be helpful. Choosing the widget attributes can be done with the 'Advance' screen under the State model tab, see Figure \ref{fig:advance}.
+The use of the \verb|abstractStateId| makes it vital to choose sufficient widget attributes. Choosing too few attributes could result in conflicting differences, like the same actions are removed and added. Choosing too many attributes could trigger a change in even the tiniest detail, which can be helpful. Choosing the widget attributes can be done with the 'Advance' screen under the State model tab, see Figure \ref{fig:advance}.
 
 An experiment application is created to discover what the best setting can be. Figure \ref{fig:exp-v1}, \ref{fig:exp-v2} and \ref{fig:exp-v3} shows the three different version of the experiment application. As one can observe, the differences between version 1 and version 2 are the added button with the label 'Hello v2' and between version 2 and 3 the buttons' colour and position. However, when using 'widget title' and 'widget control type' as widget attributes for the abstract state model, a different result is displayed. Namely: between the first two versions, the button with the label 'Hello v1' is removed, and the buttons with the labels 'Hello v1' and 'Hello v2' are added. Between versions 2 and 3, no differences are observed.
 
