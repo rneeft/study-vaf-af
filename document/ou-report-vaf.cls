@@ -22,14 +22,15 @@
 \RequirePackage{xkeyval}
 \RequirePackage{listings}
 \RequirePackage[titletoc]{appendix}
-\RequirePackage[T1]{fontenc}    
 \RequirePackage{subfigure}
 \RequirePackage{graphics}
 \RequirePackage{geometry}
+\usepackage{tabularx}
 \usetikzlibrary{decorations,decorations.pathmorphing,arrows,arrows.meta,automata,trees,backgrounds,petri,shapes,shapes.geometric,quotes,fit,positioning,calc}
 \RequirePackage[pagebackref=true,plainpages=false]{hyperref}
 \newcommand*\ourmfamily{\rmfamily}
 \newcommand*\ousffamily{\sffamily}
+\usepackage{enumitem}
 
 %% The native font is Utopia Regular with Fourier math. We use Latin Modern
 %% as a fallback, since Utopia lacks support for sans-serif and monospace.
@@ -37,6 +38,7 @@
 \RequirePackage[utf8]{inputenc}
 \RequirePackage{lmodern}
 \RequirePackage{fourier}
+
 %% The style for titles is small caps.
 \def\titlefont{\rmfamily}
 \def\titleshape{\scshape}
@@ -63,7 +65,6 @@
 \definecolor{ou-bright-green}{cmyk}{0.36,0,1,0}
 \definecolor{ou-yellow}{cmyk}{0.02,0,0.54,0}
 \definecolor{ou-red}{cmyk}{0,1,0.88,0.11}
-
 
 %% Use OU red as the color for titles
 \colorlet{title}{ou-red}
@@ -189,7 +190,7 @@
 \titlespacing{\part}{0pt}{0pt}{2\baselineskip}
 %% In the table of contents, the part name is preceded by an empty line, printed
 %% in bold, and not followed by a line of dots.
-\dottedcontents{part}[0em]{\vspace{\baselineskip}\titlefont\bfseries}{1.5em}{0pc}
+\dottedcontents{part}[0em]{\vspace{\baselineskip}\titlefont\bfseries}{1.5em}{0pt}
 
 
 %% Section titles start with the number in bold, followed by the name printed
@@ -227,7 +228,6 @@
 \titlespacing{\subsubsection}{0pt}{\bigskipamount}{0pt}
 \dottedcontents{subsubsection}[9em]{\titlefont}{3.2em}{8pt}
 
-
 %% Color the bullets of the itemize environment and make the symbol of the third
 %% level a diamond instead of an asterisk.
 \renewcommand*\labelitemi{\color{title}\textbullet}
@@ -244,3 +244,36 @@
 }
 
 \RequirePackage{csquotes}
+
+%% adding a style for code
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{ou-white},   
+    commentstyle=\color{ou-green},
+    keywordstyle=\color{ou-red},
+    numberstyle=\tiny\color{ou-red},
+    stringstyle=\color{ou-purple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,          
+    tabsize=2
+}
+\lstset{style=mystyle}
+
+
+%% create style for research question list
+\newlist{questions}{enumerate}{2}
+\setlist[questions,1]{label=\textbf{RQ\arabic*},ref=RQ\arabic*}
+\setlist[questions,2]{label*=.\textbf{\arabic*},ref=\thequestionsi.\arabic*,leftmargin=18pt}
+
+%% including acronyms
+\usepackage[acronym, toc]{glossaries}
+\makenoidxglossaries
+
+\include{acronyms}

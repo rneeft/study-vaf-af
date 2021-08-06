@@ -6,96 +6,43 @@
 % Het template is versimpeld door Sylvia Stuurman, 2019.
 % Het template is aangepast voor de ba informatica door Harrie Passier, Tanja Vos en Pekka Aho 2020 
 
-\usepackage[acronym, toc]{glossaries}
-\makenoidxglossaries
-
-\include{acronyms}
+\def\mytitle{How can automated comparison of inferred models help testers finding bugs?}
+\def\myauthor{Rick Neeft}
 
 \begin{document}
 
-%%%% TITLE PAGE %%%%%%%
-\pagenumbering{roman} 
-%to prevent that the title page will be referred as page 1, 
-%which will give the warning that there is a page 1 twice.
+    \input{sections/title-page}
+    
+    %This will automatically generate your table of contents
+    \tableofcontents
+    \newpage
+    
+    % Acronyms
+    \printnoidxglossary[type=\acronymtype]
+    \newpage
+    
+    \input{sections/introduction}
+    \newpage
+    
+    \input{sections/background}
+    \newpage
+    
+    \input{sections/related-work}
+    \newpage
+    
+    \input{sections/research}
+    \newpage
+    
+    \input{sections/planning}
+    \newpage
+    
+    \appendix
+    \chapter{Appendixes}
+    \input{appendixes/StateModelDiff}
+    \newpage
 
-\pagestyle{plain}
-\begin{titlepage}
-\begin{center}
-
-%% Insert the OU logo at the bottom of the page.
-\begin{tikzpicture}[remember picture,overlay]
-    \node at (current page.south)[anchor=south,inner sep=0pt]{
-        \includegraphics[scale=0.7]{pics/OUlogo}
-    };
-\end{tikzpicture}
-
-%% Extra white space at the top.
-\vspace*{2\bigskipamount}
-
-{\color{red}\Huge\bf How can model diff help the tester finding bugs}
-\bigskip
-
-{\large Research proposal}
-
-\bigskip \bigskip
-by
-\bigskip \bigskip
-
-{\Large\bf Rick Neeft}
-
-\bigskip \bigskip\bigskip \bigskip
-
-\begin{tabular}{lll}
-%% Add additional information here, per faculty requirements, e.g
-    Student number: & 851829973 \\
-    Course code: & \textsc{IM}0502\\
-    Thesis committee:
-        & Prof. Dr. Tanja E.J. Vos (chairman), & Open University \\
-        & Dr. Pekka Aho (supervisor), & Open University \\
-        & Fernando Pastor Ricós (supervisor), & Universitat Politècnica de València
-\end{tabular}
-
-\end{center}
-\end{titlepage}
-\pagenumbering{arabic} 
-%to prevent that the title page will be referred as page 1, 
-%which will give the warning that there is a page 1 twice.
-
-\let\cleardoublepage\clearpage
-%%%% END TITLE PAGE %%%%%%%
-
-%This will automatically generate your table of contents
-\tableofcontents
-\newpage
-
-% Acronyms
-\printnoidxglossary[type=\acronymtype]
-\newpage
-
-%%%% CONTENTS %%%%%%%
-
-\input{sections/Introduction}
-\newpage
-
-\input{sections/RelatedWork}
-\newpage
-
-\input{sections/Research}
-\newpage
-
-%%%%% TEMP TEXT TO TEST LATEX FUNCTIONALLY %%%%%%%%%%%%%
-%%% REMOVE BEFORE PUBLISH
-
-\section{Random things to test latex}
-With a \acrshort{gui} in a \acrshort{api} you can \acrshort{aut} it with the \acrshort{cr} inside the \acrshort{ci}. To calculate the \acrshort{roi} for the \acrshort{efg} and \acrshort{eig}, it is possible to find the \acrshort{fsm}. \acrshort{mbgt} will be \acrshort{mbt} later used in the \acrshort{sut}
-
-This is an example reference \cite{1} and \cite{2} and \cite{3} and c\cite{4}
-
-
-%%%% BIBLIOGRAPHY %%%%%%%
-% possible styles: apacite, abbrv, acm, alpha, apalike, ieeetr, plain, siam and unsrt.
-% alpha and abbrv are most used in computer science
-\bibliographystyle{alpha}
-\bibliography{bibliography}
+    % keep using the alpha style, this makes it easier for the reader to correlate the used citations
+    \bibliographystyle{alpha}
+    \bibliography{bibliography}
 
 \end{document}
