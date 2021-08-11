@@ -1,16 +1,240 @@
 \section{Planning} \label{planning}
-This section will outline the planning for the GA-SE.
 
-We don't have a crystal ball so planning a graduation project with every detail included is near to impossible. In order make sure the project is heading into the right direction the graduation project will adopt an Agile iterative approach that resembles the SCRUM methodology. Adopting the SCRUM methodology as a whole is, for a one-man-team, overkill. However some part of the SCRUM methodology will adapted. 
+Planning is complex, and planning a graduation project with every detail included is near to impossible. To ensure the project is heading in the right direction, it will adopt an Agile, iterative approach that resembles the SCRUM methodology. Adopting the SCRUM methodology as a whole is, for a one-person team, overkill. However, some parts of the SCRUM methodology will be adapted. 
 
-Although an iterative approach makes is possible to incorporate lessons learning into new decisions ans tasks, a plan(ning) is still necessary. As Eisenhower once said \textit{"Plans are worthless, but planning is everything" } \cite{eisenhower-quote},   it makes clear that even with Agile it is still important to have a plan. The graduation project consists of roughly 28 weeks (15 EC * 28 hours / 15 hours a week). One iteration (also known as a sprint in SCRUM) takes two weeks, therefore in this project 14 sprints are available. 
+\subsection{Iterative approach} \label{iterative-approach}
+\begin{displayquote}
+Plans are worthless, but planning is everything
+-Dwight D. Eisenhower \cite{agile}
+\end{displayquote}
 
-To make sure the projects goals are being met, a weekly meeting will be used as a control mechanism.
+Although an iterative approach, called sprints in SCRUM, makes it possible to incorporate lessons learned into new decisions and tasks, having a plan or roadmap is still essential. In section \ref{deliverables} the deliverables for the graduation project are defined. 
 
-As a control mechanism the stakeholders, the supervisors and the student, will conduct a weekly meeting. At every start of a new sprint will start the work for the sprint is planned. The sprint end will a demo of the results of that sprint and a retrospective, what went good what can be done better. Taking in consideration the only 1 person will execute the project, the demo and planning session are hold in one meeting, taking roughly 45 minutes to an hour. During the sprint the committee will have a short meeting to assess the mid sprint process and discuss any impediments. This meeting will take roughly 15 minutes. 
+The graduation project consists of roughly 28 weeks (15 EC * 28 hours / 15 hours a week). Considering that one sprint is defined as two weeks, it is possible to conduct 14 sprints. 
 
+\subsection{Control mechanism} 
+Undoubtedly there will be moments where not everything goes according to plan. For this reason, a control mechanism is in place. The supervisors and the student will conduct a weekly meeting. At every start of a new iteration, the work for the sprint is planned. The iteration will end with a demo of the results and a retrospective, what went good what can be done better. Considering that only one person will execute the project, the demo and planning session are held in one meeting, taking roughly 45 minutes to an hour. During an iteration, the committee will have a short meeting to assess the mid-iteration process and discuss any impediments. This meeting will take roughly 15 minutes. 
 
-The graduation project will follow the scrum methodology. Doing scrum will give the oppuritity to change the planning will executing the project. Therefore the project will be devided in a number of sprint.
+To summarise: the graduation project consists of 14 sprints. One sprint is two weeks. As the control, a weekly meeting is in place to discuss the progress and a demo and planning meeting at the end/start of the sprint. 
 
-The graduation project consist of 15 EC. This represents ($15*28/15$) 28 weeks. 
+\pagebreak
+\subsection{Deliverables} \label{deliverables} 
+The deliverables are as follows:
+\begin{itemize}[noitemsep]
+    \item A Stand-alone application to execute the change detection,
+    \item a stand-alone application that visualises the changes between two versions of the SUT,
+    \item the Thesis,
+    \item GA presentation.
+\end{itemize}
 
+\subsection{Roadmap} \label{roadmap}
+The roadmap is defined in five work items: epics, features, product backlog items, bugs and tasks. A detailed explanation of these categories is giving in table \ref{tables:workitems-explanation}.
+
+\begingroup
+\captionsetup{type=table}
+\begin{tabularx}{\linewidth}{ 
+  | >{\raggedright\arraybackslash}l
+  | >{\raggedright\arraybackslash}X  |}
+    \hline
+    Type & Explanation \\
+    \hline
+    \hline
+    
+    \emph{Epic} & An epic represent a goal of the graduation project. For each main research question (\ref{rq:detect-changes}, \ref{rq:diff-visualisation} and \ref{rq:validation}) an epic is created. An epic contains a non-empty set of features \cite{epics-features}.\\
+    \hline
+
+    \emph{Feature} & A feature represent a shippable component of the software or part of the thesis. A feature contains a non-empty set of product backlog items \cite{epics-features}. \\
+    \hline
+    
+    \emph{Product Backlog Item} & A \acrfull{PBI} represent a requirement or element for the application. When a PBI is planned, the developer creates tasks \cite{user-story}. \\
+    \hline
+    
+    \emph{Task} & A task is the smallest unit of work. Usually, the tasks are created ad-hoc and are used to keep track of the work of a PBI.  \\
+    \hline
+
+    \emph{Bug} & The work item Bug defect in the code and are handled the same as a PBI. When someone finds an issue with the code, it is registered as a bug and planned accordingly.\\
+    \hline
+\end{tabularx}
+\captionof{table}{Five type of work items }\label{tables:workitems-explanation}
+\endgroup
+
+The planning in sprints can be viewed in table \ref{tables:sprints}, assuming the Graduation project starts on 29 August 2021, and weekly meetings are held on a Thursday. The sprint always ends on a Wednesday and start on Thursdays. There are more sprints planned than the (14) sprints estimated in section \ref{iterative-approach} to compensate for holidays in October-November and Christmas. 
+
+\bigskip
+\begingroup
+\captionsetup{type=table}
+\begin{tabularx}{\linewidth}{ 
+  | >{\raggedright\arraybackslash}X |
+  | >{\raggedright\arraybackslash}X |
+  | >{\raggedright\arraybackslash}X  |}
+    \hline
+    Name & Start date & End date\\
+    \hline
+    \hline
+  Sprint 01&26/Aug/2021&08/Sep/2021\\	 
+ \hline
+  Sprint 02&09/Sep/2021&22/Sep/2021\\	 
+ \hline
+  Sprint 03&23/Sep/2021&06/Oct/2021\\
+ \hline
+  Sprint 04&07/Oct/2021&20/Oct/2021\\	 
+ \hline
+  Sprint 05&21/Oct/2021&03/Nov/2021\\	 
+ \hline
+  Sprint 06&04/Nov/2021&17/Nov/2021\\	 
+ \hline
+  Sprint 07&18/Nov/2021&01/Dec/2021\\	 
+ \hline
+  Sprint 08&02/Dec/2021&15/Dec/2021\\	 
+ \hline
+  Sprint 09&16/Dec/2021&29/Dec/2021\\	 
+ \hline
+  Sprint 10&30/Dec/2021&12/Jan/2022\\	 
+ \hline
+  Sprint 11&13/Jan/2022&26/Jan/2022\\	 
+ \hline
+  Sprint 12&27/Jan/2022&09/Feb/2022\\	 
+ \hline
+  Sprint 14&10/Feb/2022&23/Feb/2022\\	 
+ \hline
+  Sprint 15&24/Feb/2022&09/Mar/2022\\	 
+ \hline
+  Sprint 16&10/Mar/2022&23/Mar/2022\\	 
+ \hline
+  Sprint 17&24/Mar/2022&06/Apr/2022\\	 
+ \hline
+  Sprint 18&07/Apr/2022&20/Apr/2022\\	 
+ \hline
+\end{tabularx}
+\captionof{table}{Sprint planning}\label{tables:sprints}
+\endgroup
+
+\subsubsection{Epic \& Features}
+Table \ref{tables:epics} and \ref{tables:features} are showing the epics and features for the projects. Because an existing planning tool is used for the planning of this project the ID's are not starting at 0.
+\bigskip
+
+\begingroup
+\captionsetup{type=table}
+\begin{tabularx}{\linewidth}{ 
+  | >{\raggedright\arraybackslash}l |
+  | >{\raggedright\arraybackslash}X |}
+    \hline
+    Id & Title\\
+    \hline
+    \hline
+    356 & [RQ1] Detecting changes between two version of the SUT\\
+    357 & [RQ2] Visualise changes to the user\\
+    358 & [RQ3] Validate RQ1 and RQ2\\
+    397 & Finish Graduation assignment\\
+    \hline
+\end{tabularx}
+\captionof{table}{Epics}\label{tables:epics}
+\endgroup
+
+The list of epics can be found on: \href{https://dev.azure.com/chroomsoft/Study/_backlogs/backlog/Study Team/Epics}{Azure DevOps - Epics}
+\bigskip
+
+\begingroup
+\captionsetup{type=table}
+\begin{tabularx}{\linewidth}{ 
+  | >{\raggedright\arraybackslash}l |
+  | >{\raggedright\arraybackslash}X |
+  | >{\raggedright\arraybackslash}l |}
+    \hline
+    Id & Title & Parent Id\\
+    \hline
+    \hline
+    364 & Move code into the visualisation container  & 356\\
+    387 & What is change detection & 356\\
+    408 & Add change detection application as dependency to TESTAR & 356\\
+    377 & Add database sign in to website & 357\\
+    359 & Visualise tool should operate inside its container  & 357\\
+    369 & Visualise each change & 357\\
+    391 & Validate results in business environment & 358\\
+    380 & Develop change detection algorithm & 356\\
+    367 & What is a useful model & 356\\
+    386 & Store change detection outcome in database & 356\\
+    414 & Validate own tool & 358\\
+    382 & Look for open-source application for validation & 358\\
+    376 & Add REST API functionality & 357\\
+    372 & Show user how to navigate to a change & 357\\
+    398 & Finish Thesis & 397\\
+    399 & GA presentation & 397\\
+    \hline
+\end{tabularx}
+\captionof{table}{Features}\label{tables:features}
+\endgroup
+The list of features can be found on: \href{https://dev.azure.com/chroomsoft/Study/_backlogs/backlog/Study Team/Features/}{Azure DevOps - Features}
+
+\newpage
+\subsubsection{Product Backlog Items}
+Table \ref{tables:product-backlog-items} shows all the PBI's for the project in order they are planned to be completed.
+\bigskip
+
+\begingroup
+\captionsetup{type=table}
+\begin{tabularx}{\linewidth}{ 
+  | >{\raggedright\arraybackslash}l |
+  | >{\raggedright\arraybackslash}X |
+  | >{\raggedright\arraybackslash}l |}
+    \hline
+    Id & Title & ParentId\\
+    \hline
+    \hline
+   365 & Move the POC code of Fernando to the visualisation container & 364\\
+    366 & Add system (unit) test to the code base & 364\\
+    406 & Add CI/CD pipeline to change detection application & 364\\
+    381 & Study change detection & 387\\
+    407 & What other forms of change detection are out there & 387\\
+    409 & How to add dependency to TESTAR & 408\\
+    378 & Make sure user can sign in to the site & 377\\
+    410 & Add application model selection screen to application & 359\\
+    375 & Implement "change report" into the visualisation tool & 369\\
+    392 & Ask F-Secure for feedback & 391\\
+    411 & How to detect changes between two version of a SUT & 380\\
+    412 & Which properties need to be enabled for TESTAR to generate useful model & 367\\
+    388 & Reflect model with Vaandrager criteria & 367\\
+    393 & Implement change detection algorithm & 380\\
+    396 & How to store the outcome of the change detection & 386\\
+    413 & Saving change detection results & 386\\
+    415 & Setup TESTAR for validation application & 414\\
+    360 & Move visualise code to it own container & 359\\
+    362 & Add system (unit) tests for visualisation code & 359\\
+    363 & Add CI/CD pipeline(s) to visualisation tool & 359\\
+    361 & TESTAR will have the visualisation jar as dependency & 359\\
+    383 & Create set of requirements for open-source applications & 382\\
+    384 & Find open-source application and start TESTAR testing & 382\\
+    395 & Create REST API endpoint & 376\\
+    379 & How can sign-in details be provided with the REST API endpoint & 376\\
+    389 & Implement sign in to REST API & 376\\
+    373 & Study which shortest path algorithm works best & 372\\
+    374 & Implement shortest path into the visualisation tool & 372\\
+    \hline
+\end{tabularx}
+\newpage
+\begin{tabularx}{\linewidth}{ 
+  | >{\raggedright\arraybackslash}l |
+  | >{\raggedright\arraybackslash}X |
+  | >{\raggedright\arraybackslash}l |}
+    \hline
+    Id & Title & ParentId\\
+    \hline
+    \hline
+    370 & Study different visualisation options & 369\\
+    390 & Validate Mulders outcome for visualisation change detection & 369\\
+    371 & Implement visualisation option into tool & 369\\
+    403 & Create Draft version & 398\\
+    404 & Retrieve feedback & 398\\
+    400 & Create GA presentation & 399\\
+    402 & Practice GA presentation & 399\\
+    405 & Incorporate feedback in thesis & 398\\
+    401 & Refine GA presentation & 399\\
+    \hline
+\end{tabularx}
+\captionof{table}{Product backlog items}\label{tables:product-backlog-items}
+\endgroup
+
+The list of product backlog items can be found on: \href{https://dev.azure.com/chroomsoft/Study/_backlogs/backlog/Study Team/Backlog items/}{Azure DevOps - Product backlog item}
+
+\subsubsection{Planning}
+A sprint to sprint planning is specified with a delivery plan. Due to the size of picture, to picture can be viewed here 

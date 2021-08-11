@@ -8,6 +8,7 @@
 \ProcessOptions\relax
 \LoadClass[12pt]{article}
 
+\usepackage{csquotes}
 \RequirePackage{amsmath}
 \RequirePackage{amssymb}
 \RequirePackage[nooneline,footnotesize]{caption}
@@ -21,6 +22,7 @@
 \RequirePackage{xcolor}
 \RequirePackage{xkeyval}
 \RequirePackage{listings}
+\usepackage{pdflscape}
 \RequirePackage[titletoc]{appendix}
 \RequirePackage{subfigure}
 \RequirePackage{graphics}
