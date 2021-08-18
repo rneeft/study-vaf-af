@@ -1,9 +1,46 @@
-\section{Introduction}
-% I don't think I am making a correct point here.
-"\textit{Software is everywhere and it’s filled with bugs}".\cite{filledWithBugs}\footnote{Says Marieke Huisman at her inaugural lecture\cite{filledWithBugs}}. The phones in our pockets, pacemakers in our body and guidance systems in space all run on software that is created by people. Most of the time it run without issues but if the software fails, it costs the society a lot of money. A report from Consortium for Information \& Software Quality (CISQ) \cite{herb2020cost} calculated that the cost for poor software quality in 2020 was \$2,08 trillion in the USA alone. When comparing the cost with a country's gross national income (GNI), it is the equivalent to the GNI of Brazil in 2019 \cite{worldbank}\footnote{Brazil had a GNI of \$1,92 trillion in 2019 \cite{worldbank}}. Not only the cost for poor software quality is high also the cost for verification and validation. 
+\section{Introduction} \label{intoduction}
 
-%In addition to the cost of poor software quality, 20\% to 50\% of the cost of a development project is spent on verification and validation \cite{alegroth2016}. 
+Regression testing is considered a good practice when testing new software versions before being released to the general public. 
+However, due to shortened release cycles, the time to market has decreased drastically. As a result, software test teams have less time to all new software features, let alone try all other elements to prevent unwanted side effects \cite{rapid-release-cycle-issues}.
+The research proposed aims to apply change detection between two versions of the GUI of the system under test. 
 
-Due to the new development practices, like \acrfull{ci}, dev processes has speed up -> and time for testing decreased cite here. -> automation is therefore important and necessary. Continues integration (CI) speeds up the dev process which makes less that for testing
+This section introduces the proposed research discussing the background and context, followed by the research problem, aim, objectives and questions, and importance, and ends with the limitations. 
 
-This document is structured as follows. Section \ref{background} describes the background of this proposal and contains information that is available but might not be known by students and readers. Section \ref{releatedWork} contains an overview of the material that can be seen as a direct foundation for this proposal. Section \ref{questions} formulates the research questions for the thesis, what is research method will be used and how the questions are being validated. The last section \ref{planning} will outline the planning for the GA-SE.
+\subsection{Background}
+The TESTAR tool solves a significant obstacle when it comes to testing the GUI. With TESTAR, the tester can automatically start testing the GUI without any upfront scripts. TESTAR automatically generates and executes test cases based on elements derived from the GUI \cite{VosAho2021}. In recent master graduation assignments, TESTAR has been extended with an inferred model generation module \cite{thesisMulders}, and it became easier to integrate TESTAR in build and release pipelines in a DevOps environment \cite{thesisSlomp}. Those two additions make running TESTAR upon each source code integration and retrieving an inferred model about the GUI. In a proof of concept, two inferred models are compared to get changes between versions of the SUT \cite{stateDiff}.
+
+Some companies might write down changes in the software in a changelog. However, some changelogs might not be complete and unwanted side effects might be missing entirely. Comparing two inferred models makes retrieving all the changes between versions of a SUT, even the unwanted ones.
+
+\subsection{Research problem}
+Although the proof of concept for change detection is a good start, it lacks some basic functionality. For example, it compares calculated abstract hashes with each other. As a result, even the slightest change in GUI results in a removed and added state between versions.
+
+In addition to change detection, the change visualisation does not use the build-in visualisation tool. The proof of concept generates an HTML-based report, making it difficult to see where the change can be found and which steps the tester needs to take to navigate to the changed state in the software.
+
+\subsection{The aim of the research}
+The research aims to apply change detection on the inferred model created with the automated GUI testing tool TESTAR and research whether the outcome is helping testers finding bugs quicker. The objectives and the main research questions are:
+
+\begin{questions}
+    \item How to detect changes between two versions of the SUT?
+	\item How to visualise the detected differences to the user? 
+\item How to validate the results of \ref{rq:detect-changes} and \ref{rq:diff-visualisation}?
+\end{questions}
+
+\subsubsection{Scope}
+The scope of the research is change detection in GUI inferred models created by TESTAR. Researching how to make models and making significant changes to the creation of models are omitted. However, tweaking the model generation, like adding data is not saved at the moment, and configuring TESTAR to create a good model, is in scope.
+
+\subsubsection{Contribution}
+% what is the contribution?
+When change detection is available in TESTAR is become easy for testers to run the comparison in a continuous integration environment and receive an overview of the changes found in an updated version of the software.
+
+As a side effect, the comparison and visualisation solutions can run outside the context of TESTAR and can be deployed to a docker environment.
+
+\subsubsection{Potential limitations}
+% potential limitations
+The change detection application will not "learn" what an expected or unexpected change will be. A tester will always be needed to evaluate the results and outcome of the change detection application.
+
+Another limitation is that the change detection is tightly coupled to the data from the inferred model generation. When the generator is updated significantly, the change detection application can give an incorrect result or might even not work at all. 
+
+And secondly, the foundation of the change detection application can be applied more broadly, the implementation will be TESTAR specific. It can be hard to move to other GUI testing applications.
+
+\subsection{Document outline}
+This research proposal is structured as follows. In section \ref{intoduction} the context, aim and objectives for this research proposal are introduced, together with the limitations for the expected outcome. Section \ref{background} describes the background of this proposal and contains knowledge that is available but might not be known by the readers. Section \ref{releatedWork} includes an overview of the material that can be seen as a direct foundation for this proposal or work that influences the expected outcome. Section \ref{questions} formulates the research questions for the thesis. The last section \ref{planning} will outline the chosen approach and planning for the graduation assignment.

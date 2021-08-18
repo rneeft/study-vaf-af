@@ -1,14 +1,11 @@
 \section{Research} \label{questions}
-    In this section the research questions for the thesis are formulated. What is research method will be used and how the questions are being validated.
+In this section, the research questions for the thesis are formulated. What is research method will be used, and how the questions are being validated.
 
-    \subsection{Context}
-    What is the context of the research. 
-    
-   % Creation of test oracles are out of scope.
-    
-    % due to the experiment below sentence is false
-    %The main research question will be around finding bugs with two inferred models. Even though generating models is needed, no research will be executed on generating those.
-    
+\subsection{Context}
+The graduation assignment evolves around change detection and visualising the changes. The results is an external application that connects to OrientDB and calculates and shows the changes. The external application will be built outside TESTAR. The code created by Fernando and by Mulders will be used as a starting point for the external application. 
+
+Because change detection is the subject for this graduation assignment, it is assumed that the inferred model generator will generate useful models for change detection. Although the inferred model generator is out-of-scope, it is not ruled out that changes are necessary.
+
 \subsection{Research questions}
         
 The main research question is: \textbf{How can an automated comparison of inferred models help testers finding bugs?}
@@ -18,25 +15,16 @@ The main research question is divided into three parts. The first part (\ref{rq:
 \begin{questions}
     \item How to detect changes between two versions of the SUT? \label{rq:detect-changes}
     \begin{questions}
-        %\item What requirements are there for the inferred model for change detection? %\label{rq:model-requirements}
-        %\item What is a useful model for change detection? \label{rq:useful-model}
-        %\item Which configuration will generate a useful model? \label{rq:gen-useful-model}
-        %\item Which classification can be given to a difference in a state model? %\label{rq:classifications} 
-        %\item Which algorithm can be used to detect differences between state diagrams? %\label{rq:difference-algorithm}
-        %\item Which model or models can be used for change detection? \label{rq:which-models}
-        %\item 
-        
-        \item What is change detection, and what do we want to use it for?
-            % cross browser detection!
-        \item Which properties make a model useful for change detection?
-        \item Which TESTAR configuration will generate the useful model?
-        \item How can we find changes between two models?
+        \item What is change detection, and what do we want to use it for? \label{rq:what-is-change-detection}
+        \item Which properties make a model useful for change detection? \label{rq:useful-detection}
+        \item Which TESTAR configuration will generate the useful model? \label{rq:TESTAR-configug}
+        \item How can we find changes between two models? \label{rq:finding-changes}
     \end{questions}
 
     \item How to visualise the detected differences to the user? \label{rq:diff-visualisation}
     \begin{questions}
         \item What tooling is available to show the result of the change detection? \label{rq:tooling}
-        \item How to visualise each type of change? \label{rq:type-visualisation}
+        \item How to visualise each change? \label{rq:type-visualisation}
         \item How to generate the shortest set with actions that helps the user to reach the changed state in the SUT? \label{rq:shortest-set}    
     \end{questions}
     
@@ -46,31 +34,27 @@ The main research question is divided into three parts. The first part (\ref{rq:
         \item Which open source application can be used for validation? \label{rq:validation-apps}
         \item 
     \end{questions}
-
 \end{questions}
 
-\subsubsection{\ref{rq:model-requirements} What requirements are there for the inferred model for change detection?}
-The outcome of \ref{rq:model-requirements} is a list of requirements for the inferred model that are needed to enable change detection. For example, can a non-deterministic state model be used? However, it also includes requirements for the algorithm, like, what are acceptable calculation speeds and how big can a state model be while still complying with the speed requirement. 
+\subsubsection{\ref{rq:what-is-change-detection} What is change-detection, and what do we want to use it for?}
+The outcome of \ref{rq:what-is-change-detection} is an explanation of what change detection is in the context of TESTAR. The answer \ref{rq:what-is-change-detection} other change detection topics, like cross-browser testing, are also researched. 
 
-\subsubsection{\ref{rq:useful-model} What is a useful model for change detection?}
-In the master thesis, Mulders asked the question "\textit{What makes a model useful for TESTAR's purpose}" \cite{thesisMulders}. He used the Vaandrager's criteria \cite{vaandrager} to answer that question. To validate the requirements from RQ \ref{rq:model-requirements} the Vaandrager's criteria will be used. 
+\subsubsection{\ref{rq:finding-changes} Which properties make a model useful for change detection?}
+The outcome of \ref{rq:finding-changes} is a list of requirements for the inferred model that are needed to enable change detection. For example, can a non-deterministic state model be used? However, it also includes requirements for the algorithm, like, what are acceptable calculation speeds and how big can a state model be while still complying with the speed requirement? When the set of properties are known, Vaandrager's criteria are used to validate the model \cite{vaandrager}.
 
-\subsubsection{\ref{rq:gen-useful-model} Which configuration will generate a useful model?}
+\subsubsection{\ref{rq:TESTAR-config} Which TESTAR configuration will generate the useful model?}
 There are a couple of ways to change the outcome of an inferred model, for example, picking widget attributes for the hash calculation. These configurations can influence the usefulness of the model. The outcome of \ref{rq:gen-useful-model} should result in a TESTAR configuration file that configures TESTAR to generate this useful model. It might be necessary to make code changes in the state model generation.
 
 A thread of validity for \ref{rq:gen-useful-model} is that every application under test needs its unique configuration. Therefore it might be wise to look into all widgets attributes during the change detection and not take the hash of a state for the comparison. The configuration can be used for tuning the model and the change detection by taking the above approach.
 
-\subsubsection{\ref{rq:classifications} Which classification can be given to a difference in a state model?}
-The current algorithm \cite{stateDiff} makes two classifications regarding differences in state diagrams; added and removed state. As a consequence, two state changes are observed when an action in the \acrshort{sut} is moved. For instance, an about window is moved from the \verb|File| to the \verb|Help| menu. The hypothesis of \ref{rq:classifications} is that it can help the tester understand what kind of change is made to a new version of the \acrshort{sut}.
-
-\subsubsection{\ref{rq:difference-algorithm} Which algorithm can be used to detect differences between state diagrams?}
-\ref{rq:difference-algorithm} is the closing question in which the algorithm is coded in Java. In a recent master thesis by Slomp \cite{insert-slomp-hereTODO}, it is possible to run TESTAR in a Docker container. As a consequence, TESTAR can run without a GUI. Therefore the change detection algorithm will run in a separate application, outside the TESTAR context. The result of the change detection needs to be saved to the already existing OrientDb database. 
+\subsubsection{\ref{rq:finding-changes} How can we find changes between two models?}
+\ref{rq:finding-changes} is the closing question in which the algorithm is coded in Java. In a recent master thesis by Slomp \cite{insert-slomp-hereTODO}, it is possible to run TESTAR in a Docker container. As a consequence, TESTAR can run without a GUI. Therefore the change detection algorithm will run in a separate application, outside the TESTAR context. The result of the change detection needs to be saved to the already existing OrientDb database. 
 
 \subsubsection{\ref{rq:tooling} What tooling is available to show the detected differences?}
 Aside from the inferred model, Mulders also created an application to visualise the models. It is essential to state that Mulders did extensive research on which technology fits his needs best. \ref{rq:tooling} will look at the results of Mulders and revalidate whether the libraries are useable to visualise differences. 
 
-\subsubsection{\ref{rq:type-visualisation} How to visualise each type of change?}
-\ref{rq:type-visualisation} will look into the execution of the visualisation tool. Like \ref{rq:difference-algorithm} this also include moving the visualisation tool into its own application, outside the TESTAR context. The requirements and GUI proposals will be discussed with the TESTAR stakeholders. 
+\subsubsection{\ref{rq:type-visualisation} How to visualise change?}
+\ref{rq:type-visualisation} will look into the execution of the visualisation tool. How can added, removed or altered states in the inferred model be visualised the best? Like \ref{rq:difference-algorithm} this also include moving the visualisation tool into its separate application, outside the TESTAR context. The requirements and GUI proposals will be discussed with the TESTAR stakeholders. 
 
 \subsubsection{\ref{rq:shortest-set} How to generate the shortest set with actions that helps the user to reach the changed state in the SUT?}
 One of the requirements of the visualisation is showing how to reach the state is has changed. Dijkstra's algorithm \cite{dijkstra1959note} is a well-known algorithm to find the shortest path for a given graph. However, as Goldberg and Harrelson \cite{goldberg2005computing} showed, it is not the most optimal short path algorithm, especially with massive graphs. 
