@@ -8,7 +8,7 @@
 \ProcessOptions\relax
 \LoadClass[12pt]{article}
 
-\usepackage{csquotes}
+
 \RequirePackage{amsmath}
 \RequirePackage{amssymb}
 \RequirePackage[nooneline,footnotesize]{caption}
@@ -40,6 +40,8 @@
 \RequirePackage[utf8]{inputenc}
 \RequirePackage{lmodern}
 \RequirePackage{fourier}
+
+\usepackage{csquotes}
 
 %% The style for titles is small caps.
 \def\titlefont{\rmfamily}
@@ -121,6 +123,8 @@
 \define@key{cover}{y}{\setlength\@cover@y{#1}}
 \define@key{cover}{margin}{\setlength\@cover@margin{#1}}
 
+
+\usepackage[none]{hyphenat}
 
 %% Remove the header and page number on empty pages.
 \def\cleardoublepage{%
@@ -245,7 +249,7 @@
     urlcolor = title
 }
 
-\RequirePackage{csquotes}
+
 
 %% adding a style for code
 \lstdefinestyle{mystyle}{
