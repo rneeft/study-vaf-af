@@ -34,9 +34,9 @@ When change detection is available in TESTAR, it becomes easy for testers to run
 As a side effect, the comparison and visualisation solutions can run outside the context of TESTAR and can be deployed to a docker environment.
 
 \subsubsection{Potential limitations}
-The change detection application will not "learn" what an expected or unexpected change will be. A tester will always be needed to evaluate the results and outcomes of the change detection application.
+During this research, the change detection application will not "learn" what an expected or unexpected change will be. A tester will be needed to evaluate the results and outcomes of the change detection application.
 
-Another limitation is that the change detection is tightly coupled to the data from the inferred model generation. When the generator is updated significantly, the change detection application can give an incorrect result or might even not work at all. 
+Another limitation is that the change detection is tightly coupled to the data from the inferred model generation. When the generator is updated significantly, the change detection application can give an incorrect result or might not even work at all. 
 
 Lastly, where the foundation of the change detection application can be applied more broadly, the implementation will be TESTAR specific. It can be hard to move to other GUI testing applications, except when they adopt the same data storage strategy as TESTAR. 
 

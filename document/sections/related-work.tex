@@ -1,13 +1,65 @@
 \section{Related work} \label{releatedWork}
-    
-This section covers an overview of the material that can be seen as the direct foundation for this proposal.
+This section covers an overview of the material that is the direct foundation for this proposal.
+
+\subsection{Inferred model} \label{inferred-model}
+The master thesis by Mulders had two significant outcomes. The first is an inferred model module, and the second is the visualisation of the inferred models. Although the visualisation module becomes required when we want to visualise the result of the change-detection software, it is not necessary to go into depth in this document. This section will discuss what an inferred model is and how they are generated. 
+
+Section \ref{gui-state} the GUI state was discussed. The section ended with the sentence that the universe of states and actions of the SUT's GUI makes up the inferred model. The inferred model is a directed graph showing the GUI-state of the application and its interaction with actions. The vertex of the graph represents the GUI-state. Each vertex has a non-empty set of incoming and outgoing edges, called the actions. 
+
+Figure \ref{fig:state-model} shows the result of the inferred model module.
+
+\bigskip
+\begingroup
+\captionsetup{type=figure}
+\includegraphics[scale=0.6]{pics/state-model.png}
+\captionof{figure}{Inferred model}\label{fig:state-model}
+\endgroup
+
+In figure \ref{fig:state-model} two models can be observed. The first model, indicated by the AS text, shows the abstract model. The second, indicated by the CS text, shows the concrete model. 
+
+\subsubsection{Concrete model}
+The concrete model contains all the data that could be retrieved from the GUI. The identification key is using a hash calculated over all the properties. Aside from the widget's properties, the concrete models also contain a screenshot of the GUI for each state.
+
+Figure \ref{fig:concrete-node} shows an example of a node in the concrete model. Upon selecting a node, the properties of the node show, including the screenshot taken during the test. The grey dotted line, indicated with the letter 'a', shows the connection with the abstract node, see section \ref{abstract-model} and figure \ref{fig:abstract-node} for more details. The two outcoming edges, indicated with the letter 'b', shows the two actions available in this state. The incoming edge, indicated with the letter 'c', shows how the state was reached. 
+
+\bigskip
+\begingroup
+\captionsetup{type=figure}
+\includegraphics[scale=0.5]{document/pics/concrete-model.png}
+\captionof{figure}{A node from the concrete model}\label{fig:concrete-node}
+\endgroup
+
+\subsubsection{Abstract model} \label{abstract-model}
+Since the concrete models containing all the data from a GUI-state, they can become quite large.  Therefore an abstraction model is made. Figure \ref{fig:abstract-model} shows an example of a node, indicated by 'AS-3'  in the abstract model. The grey lines (from CS-3, CS-6 to AS-3) indicates which concrete state is abstracted. The properties of the abstract node are displayed what the identifier is and which concrete state(s) it represents.
+
+\bigskip
+\begingroup
+\captionsetup{type=figure}
+\includegraphics[scale=0.5]{document/pics/abstract-model.png}
+\captionof{figure}{A node from the abstract model}\label{fig:abstract-model}
+\endgroup
+
+\subsubsection{State identifiers} \label{state-identifiers}
+Every state must have a unique id for identification. The identifier is calculated from the information from the widget tree. 
+
+TESTAR uses a hashing algorithm that works as follows: the used properties are concatenated and hashed for each widget. The hashed widget properties are then joined to create a state hash that identifies it. 
+
+To identify the state (and actions), TESTAR calculates two state identifiers; an abstract and concrete state identifier. For the concrete state identifier, all the properties of a widget are used. For the abstract identifier, a subset of the properties is used. It is configurable which properties are used for the abstract identifier. By default the properties \textit{role}, \textit{title}, \textit{position} and \textit{enabled} are used.
+
+When running TESTAR, it is possible to configure which widget properties should be used for the abstract state identifier. Figure \ref{fig:advance} shows the selection dialogue in which the user can select the properties for the abstract id.
+
+\subsubsection{How is an inferred model created?}
 
 \subsection{State model difference}
-The \verb|StateModel.Difference| package, added by Ricós\cite{stateDiff}, offers a proof of concept for calculating differences between the state models. With this proof of concept, two inferred models are being compared with each other. For the comparison the \verb|abstractStateId| is being used. This is great for the proof of concept but due to the boolean nature of this comparison, the state either exist or not, it can result in many 'false' changes. 
+
+
+%% TEXT HAVE NOT CHANGE BELOW THIS LINE %%
+
+The \verb|StateModel.Difference| package, added by Pastor Ricós\cite{stateDiff}, offers a proof of concept for calculating differences between the state models. With this proof of concept, two inferred models are being compared with each other. For the comparison, the \verb|abstractStateId| is being used. This is great for the proof of concept, but due to the boolean nature of this comparison, the state either exists or not, and it can result in many 'false' changes. 
 
 
 
-Ricós difference algorithm\cite{stateDiff} outputs two classification of changes between two versions: added and removed state. Let $A$ be a set of \verb|abstractStateId|'s of version 1 of the SUT, let $B$ be a set of \verb|abstractStateId|'s of version 2 of the SUT. The removed states can be written as
+Ricós difference algorithm\cite{stateDiff} outputs two classification of changes between two versions: added and removed state. Let $A$ be a set of \verb|abstractStateId|s of version 1 of the SUT, and let $B$ be a set of \verb|abstractStateId|s of version 2 of the SUT. The removed states can be written as
 \[A-B = \lbrace x | x \in A \wedge x \notin B \rbrace\]
 the states that are added can be written as
 \[B-A = \lbrace x | x \in B \wedge x \notin A \rbrace\]
@@ -18,7 +70,10 @@ the states that are added can be written as
 \captionof{figure}{Select widgets attributes for the abstractStateId}\label{fig:advance}
 \endgroup
 
-Using the \verb|abstractStateId| is excellent for the proof of concept and preliminary change detection, but due to the boolean nature of this comparison, the state either exists or not, it can result in many 'false' changes.
+Using the \verb|abstractStateId| is excellent for the proof of concept and preliminary change detection, 
+but due to the boolean nature of this comparison, the state either exists or not, and it can result in many 'false' changes.
+
+
 
 The use of the \verb|abstractStateId| makes it vital to choose sufficient widget attributes. Choosing too few attributes could result in conflicting differences, like the same actions are removed and added. Choosing too many attributes could trigger a change in even the tiniest detail, which can be helpful. Choosing the widget attributes can be done with the 'Advance' screen under the State model tab, see Figure \ref{fig:advance}.
 
@@ -46,7 +101,7 @@ When looking at the three versions, it raises interesting questions;
 
 What are interesting changes? 
 
-Which attributes needs to be taking into account for the \verb|abstractStateId|? 
+Which attributes should to be taken into account for the \verb|abstractStateId|? 
 
 Might it be of more interest to look into the actions instead of the state? 
 
