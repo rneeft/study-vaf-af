@@ -20,7 +20,7 @@ In figure \ref{fig:state-model} two models can be observed. The first model, ind
 \subsubsection{Concrete model}
 The concrete model contains all the data that could be retrieved from the GUI. The identification key is using a hash calculated over all the properties. Aside from the widget's properties, the concrete models also contain a screenshot of the GUI for each state.
 
-Figure \ref{fig:concrete-node} shows an example of a node in the concrete model. Upon selecting a node, the properties of the node show, including the screenshot taken during the test. The grey dotted line, indicated with the letter 'a', shows the connection with the abstract node, see section \ref{abstract-model} and figure \ref{fig:abstract-node} for more details. The two outcoming edges, indicated with the letter 'b', shows the two actions available in this state. The incoming edge, indicated with the letter 'c', shows how the state was reached. 
+Figure \ref{fig:concrete-node} shows an example of a node in the concrete model. Upon selecting a node, the properties of the node show, including the screenshot taken during the test. The grey dotted line, indicated with the letter 'a', shows the connection with the abstract node, see section \ref{fig:abstract-node} and figure \ref{fig:abstract-node} for more details. The two outcoming edges, indicated with the letter 'b', shows the two actions available in this state. The incoming edge, indicated with the letter 'c', shows how the state was reached. 
 
 \bigskip
 \begingroup
@@ -29,14 +29,14 @@ Figure \ref{fig:concrete-node} shows an example of a node in the concrete model.
 \captionof{figure}{A node from the concrete model}\label{fig:concrete-node}
 \endgroup
 
-\subsubsection{Abstract model} \label{abstract-model}
-Since the concrete models containing all the data from a GUI-state, they can become quite large.  Therefore an abstraction model is made. Figure \ref{fig:abstract-model} shows an example of a node, indicated by 'AS-3'  in the abstract model. The grey lines (from CS-3, CS-6 to AS-3) indicates which concrete state is abstracted. The properties of the abstract node are displayed what the identifier is and which concrete state(s) it represents.
+\subsubsection{Abstract model} \label{abstract-node}
+Since the concrete models containing all the data from a GUI-state, they can become quite large.  Therefore an abstraction model is made. Figure \ref{fig:abstract-node} shows an example of a node, indicated by 'AS-3'  in the abstract model. The grey lines (from CS-3, CS-6 to AS-3) indicates which concrete state is abstracted. The properties of the abstract node are displayed what the identifier is and which concrete state(s) it represents.
 
 \bigskip
 \begingroup
 \captionsetup{type=figure}
 \includegraphics[scale=0.5]{document/pics/abstract-model.png}
-\captionof{figure}{A node from the abstract model}\label{fig:abstract-model}
+\captionof{figure}{A node from the abstract model}\label{fig:abstract-node}
 \endgroup
 
 \subsubsection{State identifiers} \label{state-identifiers}
