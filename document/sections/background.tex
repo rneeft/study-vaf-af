@@ -127,7 +127,6 @@ In order to test a desktop application, TESTAR makes use of the Windows Automati
 
 \subsection{GUI State} \label{gui-state}
 In the previous sections, the widget tree is discussed and how the widgets are retrieved. In the widget tree, all the GUI elements with their properties are captured. The widget tree represents the state of the GUI when it has stopped executing any action. The GUI is at 'rest'. When an action is executed, the GUI can change, going to a new state. In figure \ref{fig:state-actions} the state change is represented in a small graph. 
-
 \bigskip
 \begingroup
 \captionsetup{type=figure}
@@ -165,3 +164,16 @@ The last model is the \hypertarget{db:object}{\emph{object}} that supports inher
 Despite being a NoSQL database, OrientDB does support SQL as a query language \cite{sql-lang} albeit that it does not support all SQL statements. The majority of developers have experience with SQL \cite{sql-stats}, and as a result, new developers and students can start querying the TESTAR data and start expanding its features.\par
 
 In addition to TESTAR, other applications can query the state model data in the OrientDB database as well. For example, developers and students can create external tools for a single purpose, like a state model difference application. When building external tools, the TESTAR application can be kept small and focus upon one objective: testing GUI applications. 
+
+
+\newpage
+\subsection{Merkle tree}
+
+Work in process.....
+
+\bigskip
+\begingroup
+\captionsetup{type=figure}
+\includegraphics{pics/merkle-tree-example.png}
+\captionof{figure}{An short Merkle tree example based on a widget tree}\label{fig:state-actions}
+\endgroup
