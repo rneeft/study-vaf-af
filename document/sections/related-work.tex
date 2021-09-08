@@ -20,7 +20,7 @@ In figure \ref{fig:state-model} two models can be observed. The first model, ind
 \subsubsection{Concrete model}
 The concrete model contains all the data that could be retrieved from the GUI. The identification key uses a hash calculated over all the properties. Aside from the widget's properties, the concrete models also contain a screenshot of the GUI for each state.
 
-Figure \ref{fig:concrete-node} shows an example of a node in the concrete model. Upon selecting a node, the properties of the node show, including the screenshot taken during the test. The grey dotted line, indicated with the letter 'a', shows the connection with the abstract node, see section \ref{abstract-model} and figure \ref{fig:abstract-node} for more details. The two outcoming edges, indicated with the letter 'b', shows the two actions available in this state. The incoming edge, indicated with the letter 'c', shows how the state was reached. 
+Figure \ref{fig:concrete-node} shows an example of a node in the concrete model. Upon selecting a node, the properties of the node show, including the screenshot taken during the test. The grey dotted line, indicated with the letter 'a', shows the connection with the abstract node, see section \ref{abstract-model} and figure \ref{fig:abstract-model} for more details. The two outgoing edges, indicated with the letter 'b', shows the two actions available in this state. The incoming edge, indicated with the letter 'c', shows how the state was reached. 
 
 \bigskip
 \begingroup
@@ -49,7 +49,7 @@ To identify the state (and actions), TESTAR calculates two state identifiers; an
 When running TESTAR, it is possible to configure which widget properties should be used for the abstract state identifier. Figure \ref{fig:advance} shows the selection dialogue in which the user can select the properties for the abstract id.
 
 \subsubsection{How is an inferred model created?}
-This research focuses itself on the outcome of the obtain step as illustrated in figure \ref{fig:obtain-state-graph}, which is the top right part of figure \ref{fig:testart-test-cycle}.
+This research focuses itself on the outcome of the obtain step as illustrated in figure \ref{fig:obtain-state-graph}, which is the top right part of figure \ref{fig:testar-test-cycle}.
 
 \bigskip
 \begingroup
@@ -111,7 +111,7 @@ However, a different result is displayed when using 'widget title' and 'widget c
 
 Besides change detection on GUI state, the algorithm should also include outgoing actions into consideration. The two-button app experiment shows that selecting different widget properties have an impact on the outcome. However, the algorithm must show that change when an action is removed or leads to another GUI state.   
 
-In the next section (\ref{4.2}), the research questions are discussed. Of course, one of the questions will investigate how the change detection algorithm must be implemented. The findings of the two-button app should be considered, and the experiment should be adapted to contain different changes to test on. 
+In the next section (\ref{research-questions}), the research questions are discussed. Of course, one of the questions will investigate how the change detection algorithm must be implemented. The findings of the two-button app should be considered, and the experiment should be adapted to contain different changes to test on. 
 
 \subsection{TESTAR in containers}
 A recent master thesis by Slomp explains how TESTAR can be integrated into a \acrfull{ci} environment. Slomp introduced TESTAR into the world of Docker and container and integrated TESTAR into an Azure DevOps pipeline. A pipeline is a collection of steps that can automatically build, test and release software. A container bundles all the software, configuration files and libraries together so that an application can run \cite{ms-container}. 
@@ -121,11 +121,3 @@ When TESTAR is being run within the Azure DevOps pipeline, the TESTAR GUI is not
 By moving the code for change detection and visualisation into a stand-alone web application, the user can analyse the outcome on their browser. Since TESTAR is wrapped into a container, the stand-alone tool will also be wrapped to provide the same infrastructure. Nevertheless, it is up to the IT administrator how they deploy the TESTAR suite. 
 
 Additionally, to the user's benefit, a TESTAR developer can also benefit from the application's separation. Changes to either the separate application or TESTAR can be made without being conflicting with the other. Each tool can focus on one goal, while TESTAR can focus on testing GUI applications. 
-
-
-
-
-
-Can we leverage image recognition, like with the Murphy tool \cite{murphy-extract-gui}, next to action differences? 
-
-Can it be helpful to make hashes of combined hashes to discover changes or look deeper into underlying hashes, like in a Merkle tree \cite{merkle-tree} structure?
