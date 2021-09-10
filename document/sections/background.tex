@@ -39,8 +39,10 @@ In the \emph{Generate} mode, TESTAR will start testing the specified system. Sec
 
 The \emph{Record} mode allows a tester to record a test sequence manually. In the \emph{Replay} mode, existing test execution can be re-executed and lastly, the \emph{View} mode allows existing test executions to be viewed.
 
+\newpage
 \subsubsection{TEST automation} \label{testar-testauto}
 TESTAR works without test scripts. Instead, it uses GUI Ripping and Monkey testing techniques. \emph{GUI Ripping}, first introduced by Memon et al. \cite{gui-ripping}, is a process to obtain the GUI's structure and execution behaviour automatically. As for \emph{Monkey testing}, it is a process in which decisions (interactions with the GUI) are randomly made. Section \ref{data-retrieval} will give more insights into GUI Ripping.
+
 TESTAR is using a flow to execute tests on the SUT. This flow is as follows:
 \begin{samepage}
 \begin{enumerate}
@@ -55,8 +57,8 @@ TESTAR is using a flow to execute tests on the SUT. This flow is as follows:
 \bigskip
 \begingroup
 \captionsetup{type=figure}
-\includegraphics[scale=0.75]{pics/testar-test-cycle.png}
-\captionof{figure}{TESTAR test cycle \cite{VosAho2021}}\label{fig:testar-test-cycle}
+\includegraphics[scale=0.5]{pics/testar-test-cycle.png}
+\captionof{figure}{TESTAR test cycle \cite{testar-presentation}}\label{fig:testar-test-cycle}
 \endgroup
 
 Figure \ref{fig:testar-test-cycle} shows the flow graphically \cite{VosAho2021}. The test specialist needs to provide SUT details to TESTAR, like which actions should not be executed, and devise a mechanism that defines which SUT behaviour is correct and which is not, named a test oracle (Section \ref{test-oracles}). 
@@ -115,7 +117,7 @@ The widgets are structured hierarchically in a \emph{widget tree}. Each node in 
 \bigskip
 \begingroup
 \captionsetup{type=figure}
-\includegraphics{pics/calc-tree.png}
+\includegraphics[scale=0.7]{pics/calc-tree.png}
 \captionof{figure}{A compact version of a widget tree for the calculator.}\label{fig:widget-tree}
 \endgroup
 
@@ -161,10 +163,12 @@ The \hypertarget{db:graph}{\emph{graph}} is a model consisting of \emph{Vertices
 
 The last model is the \hypertarget{db:object}{\emph{object}} that supports inheritance, like in the Object-Oriented programming paradigm.\par
 
+\newpage
 Despite being a NoSQL database, OrientDB does support SQL as a query language \cite{sql-lang} albeit that it does not support all SQL statements. The majority of developers have experience with SQL \cite{sql-stats}, and as a result, new developers and students can start querying the TESTAR data and start expanding its features.\par
 
 In addition to TESTAR, other applications can query the state model data in the OrientDB database as well. For example, developers and students can create external tools for a single purpose, like a state model difference application. When building external tools, the TESTAR application can be kept small and focus upon one objective: testing GUI applications. 
 
+\newpage
 \subsection{Merkle tree}
 A Merkle tree is a hash tree data structure where a hash can identify each vertex. \cite{merkle-tree} The cryptographic hash is calculated by taking the hashes of the descendant vertices, combining them, and calculating a new hash from the combination. 
 
@@ -175,6 +179,6 @@ Although a Merkle-tree usually is a binary tree \cite{merkle-tree}, having more 
 \bigskip
 \begingroup
 \captionsetup{type=figure}
-\includegraphics{pics/merkle-tree-example.png}
+\includegraphics[scale=0.9]{pics/merkle-tree-example.png}
 \captionof{figure}{An short Merkle tree example based on a widget tree}\label{fig:merkle-tree}
 \endgroup
