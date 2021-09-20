@@ -10,6 +10,7 @@
 
 
 \RequirePackage{amsmath}
+
 \RequirePackage{amssymb}
 \RequirePackage[nooneline,footnotesize]{caption}
 \RequirePackage{fancyhdr}
@@ -33,7 +34,7 @@
 \newcommand*\ourmfamily{\rmfamily}
 \newcommand*\ousffamily{\sffamily}
 \usepackage{enumitem}
-
+\usepackage{hyphenat}
 %% The native font is Utopia Regular with Fourier math. We use Latin Modern
 %% as a fallback, since Utopia lacks support for sans-serif and monospace.
 \RequirePackage[T1]{fontenc}
@@ -197,6 +198,7 @@
 %% In the table of contents, the part name is preceded by an empty line, printed
 %% in bold, and not followed by a line of dots.
 \dottedcontents{part}[0em]{\vspace{\baselineskip}\titlefont\bfseries}{1.5em}{0pt}
+
 
 
 %% Section titles start with the number in bold, followed by the name printed
