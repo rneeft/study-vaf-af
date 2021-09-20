@@ -10,7 +10,6 @@
 
 
 \RequirePackage{amsmath}
-
 \RequirePackage{amssymb}
 \RequirePackage[nooneline,footnotesize]{caption}
 \RequirePackage{fancyhdr}
@@ -34,7 +33,7 @@
 \newcommand*\ourmfamily{\rmfamily}
 \newcommand*\ousffamily{\sffamily}
 \usepackage{enumitem}
-\usepackage{hyphenat}
+
 %% The native font is Utopia Regular with Fourier math. We use Latin Modern
 %% as a fallback, since Utopia lacks support for sans-serif and monospace.
 \RequirePackage[T1]{fontenc}
@@ -123,7 +122,6 @@
 \define@key{cover}{x}{\setlength\@cover@x{#1}}
 \define@key{cover}{y}{\setlength\@cover@y{#1}}
 \define@key{cover}{margin}{\setlength\@cover@margin{#1}}
-
 
 \usepackage[none]{hyphenat}
 
