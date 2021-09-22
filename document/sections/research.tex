@@ -6,6 +6,8 @@ The graduation assignment evolves around change detection and visualising the ch
 
 Because change detection is the subject for this graduation assignment, it is assumed that the inferred model generator will generate useful models for change detection. Although the inferred model generator is out-of-scope, it is not ruled out that changes are necessary.
 
+Any automatic learning capabilities are also out-of-scope. A change detection learning capability could be a topic for a future research proposal. Regarding this research proposal, a human will be needed to evaluate the results and outcome of the change detection application.
+
 \subsection{Research questions} \label{research-questions}
         
 The main research question is: \textbf{How can an automated comparison of inferred models help testers finding bugs?}
@@ -57,3 +59,13 @@ Aside from the inferred model, Mulders also created an application to visualise 
 
 \subsubsection{\ref{rq:shortest-set} How to generate the shortest set of actions that helps the user to reach the changed state in the SUT?}
 One of the requirements of the visualisation is showing how to reach the state that has changed. Dijkstra's algorithm \cite{dijkstra1959note} is a well-known algorithm to find the shortest path for a given graph. However, as Goldberg and Harrelson \cite{goldberg2005computing} showed, it is not the most optimal shortest path algorithm, especially with massive graphs. 
+
+\subsubsection{\ref{rq:req-apps} What are the requirements for validation applications?}
+To validate the outcome of the change detection algorithm, we will need to have an application to test it on. The research question will create a set of requirements for the validation application, like multiple versions. The set will be discussed with the supervisors to make sure nothing will be forgotten.
+
+\subsubsection{\ref{rq:validation-apps} Which applications can be used for validation?}
+During development and system testing, the two-button app will be extended and used. Although the app is excellent during the development phase, it is nowhere close to a real-world application. Based on the outcome of \ref{rq:req-apps}, an application needs to be found in order to test the change detection algorithm.
+
+In addition to the application found, F-secure will be asked for feedback on the algorithm and the visualisation. F-Secure is a company based in Finland that provides security solutions to its customers and are currently testing the proof of concept of Pastor Ricós. 
+
+With the combination of real-world application and the feedback from F-Secure, biased towards a single point of view for the algorithm will be minimized. 

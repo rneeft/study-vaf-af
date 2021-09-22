@@ -64,7 +64,9 @@ TESTAR is using a flow to execute tests on the SUT. This flow is as follows:
 Figure \ref{fig:testar-test-cycle} shows the flow graphically \cite{VosAho2021}. The test specialist needs to provide SUT details to TESTAR, like which actions should not be executed, and devise a mechanism that defines which SUT behaviour is correct and which is not, named a test oracle (Section \ref{test-oracles}). 
 
 \subsection{How is the SUT tested} \label{test-oracles}
-When software is tested, a method is needed to check the correct behaviour of the SUT. The method of checking is formally known as a \emph{test oracle} \cite{testOracles}. An example of a test oracle, widely used by developers, is a code \emph{assertion} that is a Boolean assertion. Developers can create assertions in software to check its behaviour during run-time \cite{barr2014oracle}. Assertions can also be used in unit tests as displayed below on Listing \ref{code:assert}. 
+When software is tested, a method is needed to check the correct behaviour of the SUT. The method of checking is formally known as a \emph{test oracle} \cite{testOracles}. 
+
+Outside the TESTAR context, an example of a test oracle could be a \emph{assertion} in software code. An assertion is a boolean expression created in a program by a software developer which checks the program's behaviour during run-time \cite{barr2014oracle}. Assertions can also be used in unit tests as displayed below on Listing \ref{code:assert}. 
 
 %% do not indent code since it indents its extra in the LaTeX output
 \begin{lstlisting}[language=Java, caption=Example assertion, label=code:assert]
@@ -78,6 +80,8 @@ public void testAdd(){
     Assert.assertEquals(expected, actual);
 }
 \end{lstlisting}
+
+TESTAR comes with some test oracles out-of-the-box. Without any configuration, TESTAR will recognize crashes and unresponsiveness. It is also able to validate the GUI state with suspicious text. For example, a test sequence will fail when the title of a widget contains the word 'exception'. The input for the suspicious text is a regular expression that can be adjusted by the TESTAR user \cite{VosAho2021}. 
 
 \subsubsection{Online and Offline Test oracles}
 Test oracles come in two variants, \emph{online} or \emph{on-the-fly} test oracles and \emph{offline} test oracles \cite{VosAho2021}. With online test oracles, the state under test is being asserted for any anomalies during test execution. For example,  an online test oracle inspects the URL to check for any information being exposed in the query string. Offline test oracles will look into stored data - like logs - to find anomalies after test execution. For example, offline test oracles can inspect all the visited URLs to check for any exposed information in the query strings.
@@ -167,17 +171,3 @@ The last model is the \hypertarget{db:object}{\emph{object}} that supports inher
 Despite being a NoSQL database, OrientDB does support SQL as a query language \cite{sql-lang} albeit that it does not support all SQL statements. The majority of developers have experience with SQL \cite{sql-stats}, and as a result, new developers and students can start querying the TESTAR data and start expanding its features.\par
 
 In addition to TESTAR, other applications can query the state model data in the OrientDB database as well. For example, developers and students can create external tools for a single purpose, like a state model difference application. When building external tools, the TESTAR application can be kept small and focus upon one objective: testing GUI applications. 
-
-\subsection{Merkle tree}
-A Merkle tree is a hash tree data structure where a hash can identify each vertex. \cite{merkle-tree} The cryptographic hash is calculated by taking the hashes of the descendant vertices, combining them, and calculating a new hash from the combination. 
-
-As is written in section \ref{state-identifiers}, TESTAR's way of calculating the identification id for a widget or a GUI state is similar to that of the Merkle tree vertex. The hashed id for a widget is based on the hashed property values. Figure \ref{fig:merkle-tree} shows an example of a Merkle tree about how the GUI state identification id is calculated. The corresponding widget tree (Figure \ref{fig:widget-tree}), where the Merkle tree is based, is shown in the top right corner.
-
-Although a Merkle-tree usually is a binary tree \cite{merkle-tree}, having more than two descendant vertices is not considered a problem since the same Merkle-tree principle can be applied.
-
-\bigskip
-\begingroup
-\captionsetup{type=figure}
-\includegraphics[scale=0.8]{pics/merkle-tree-example.png}
-\captionof{figure}{An short Merkle tree example based on a widget tree}\label{fig:merkle-tree}
-\endgroup

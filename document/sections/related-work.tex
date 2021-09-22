@@ -43,12 +43,25 @@ Since the concrete models containing all the data from a GUI-state, they can bec
 \subsubsection{State identifiers} \label{state-identifiers}
 Every state must have a unique id for identification. The identifier is calculated with the data from the widget tree. 
 
-TESTAR uses a hashing algorithm that works as follows: 
-the widgets' properties are concatenated and hashed. The outcome will be used as the identifier for a widget. The hashes from the widget in the widget tree are then combined and hashed to create an identifier for the GUI state \cite{VosAho2021}
+TESTAR uses a hashing algorithm that works as follows: the widgets' properties are concatenated and hashed. The outcome will be used as the identifier for a widget. The hashes from the widget in the widget tree are then combined and hashed to create an identifier for the GUI state \cite{VosAho2021}. The TESTAR's algorithm is similar to how a Merkle tree works, more information can be found at section \ref{merkle-tree}.
 
 To identify the state (and actions), TESTAR calculates two state identifiers; an abstract and concrete state identifier. For the concrete state identifier, all the properties of a widget are used. For the abstract identifier, a subset of the properties is used. It is configurable which properties are used for the abstract identifier. By default the properties \textit{role}, \textit{title}, \textit{position} and \textit{enabled} are utilised \cite{VosAho2021, thesisMulders}.
 
 When running TESTAR, it is possible to configure which widget properties should be used for the abstract state identifier. Figure \ref{fig:advance} shows the selection dialogue in which the user can select the properties for the abstract identifier.
+
+\subsection{Merkle tree} \label{merkle-tree}
+A Merkle tree is a hash tree data structure where a hash can identify each vertex. \cite{merkle-tree} The cryptographic hash is calculated by taking the hashes of the descendant vertices, combining them, and calculating a new hash from the combination. 
+
+As written in the previous section (\ref{state-identifiers}), TESTAR's way of calculating the identification id for a widget or a GUI state is similar to that of the Merkle tree vertex. The hashed id for a widget is based on the hashed property values. Figure \ref{fig:merkle-tree} shows an example of a Merkle tree about how the GUI state identification id is calculated. The corresponding widget tree (Figure \ref{fig:widget-tree}), where the Merkle tree is based, is shown in the top right corner.
+
+Although a Merkle tree usually is a binary tree \cite{merkle-tree}, having more than two descendant vertices is not considered a problem since the same Merkle-tree principle can be applied.
+
+\bigskip
+\begingroup
+\captionsetup{type=figure}
+\includegraphics[scale=0.8]{pics/merkle-tree-example.png}
+\captionof{figure}{An short Merkle tree example based on a widget tree}\label{fig:merkle-tree}
+\endgroup
 
 \subsubsection{How is an inferred model created?}
 This research focuses itself on the outcome of the obtain step as illustrated in figure \ref{fig:obtain-state-graph}, which is the top right part of figure \ref{fig:testar-test-cycle}.
@@ -83,7 +96,7 @@ However, its boolean nature in which state exists or not can result in many 'fal
 
 Section \ref{state-identifiers} discussed how identifiers are generated, since the differences are calculated based on the \verb|abstractStateId| selecting the correct widget attributes is vital. Choosing too few attributes could result in conflicting differences like the same actions are removed and added. Choosing too many attributes could trigger a change in even the tiniest detail. Choosing the widget attributes can be done with the 'Advance' screen under the State model tab. See Figure \ref{fig:advance}.
 
-For the research proposal, an experiment application is created, the two-buttons app. With the two-buttons app, it was possible to experiment with various TESTAR settings. The application is shown in figures \ref{fig:exp-v1}, \ref{fig:exp-v2} and \ref{fig:exp-v3}. As one can observe, the differences between version 1 and version 2 are the added button with the label 'Hello v2' and between version 2 and 3 the buttons' colour and position. 
+For the research proposal, an experiment application is created; the two-buttons app. With the two-buttons app, it was possible to experiment with various TESTAR settings. The application is shown in figures \ref{fig:exp-v1}, \ref{fig:exp-v2} and \ref{fig:exp-v3}. As one can observe, the differences between version 1 and version 2 are the added button with the label 'Hello v2' and between version 2 and 3 the buttons' colour and position. 
 
 \begin{tabularx}{\textwidth}{@{} 
    >{\raggedright\arraybackslash}X
@@ -109,9 +122,12 @@ For the research proposal, an experiment application is created, the two-buttons
     \endgroup
 \end{tabularx}
 
-However, a different result is displayed when using 'widget title' and 'widget control type' as widget attributes for the abstract states. Namely, the button with the label 'Hello v1' is removed between the first two versions. The buttons labelled 'Hello v1' and 'Hello v2' is added. Between versions 2 and 3, no differences are observed.
 
-Besides change detection on GUI state, the algorithm should also include outgoing actions into consideration. The two-button app experiment shows that selecting different widget properties have an impact on the outcome. However, the algorithm must show a change when an action is removed or leads to another GUI state.   
+However, a different result is displayed when using 'widget title' and 'widget control type' as widget attributes for the abstract states. Namely, the button with the label 'Hello v1' is removed between the first two versions. The buttons labelled 'Hello v1' and 'Hello v2' are added. Between versions 2 and 3, no differences are observed.
+
+This change difference outcome can be explained by the way the proof of concept is working. The widget tree of version 1 contains one button, whereas the widget tree of version 2 contains two buttons. Therefore both the abstract and the concrete identifiers are different for both widget trees. The proof of concept change detection checks whether the abstract identifier of version 1 can be found in version 2, which it cannot, so the state is marked as removed. The state of version 2 can likewise not be found in version 1 so that state is marked as new.
+
+The chosen widget attributes explain the absence of changes between versions 2 and 3. Neither the title nor the control type has changed. Since those attributes were used for the abstract identifier, TESTAR did not detect a change. 
 
 In section (\ref{research-questions}), the research questions are discussed. Of course, one of the questions will investigate how the change detection algorithm must be implemented. The findings of the two-button app should be considered, and the experiment should be adapted to contain different changes to test on. 
 
